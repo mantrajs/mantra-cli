@@ -1,0 +1,24 @@
+{
+  "name": "mantra-cli",
+  "version": "0.1.0",
+  "description": "Generate files according to Mantra spec using CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sungwoncho/mantra-cli.git"
+  },
+  "keywords": [
+    "meteor",
+    "mantra",
+    "cli"
+  ],
+  "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sungwoncho/mantra-cli/issues"
+  },
+  "homepage": "https://github.com/sungwoncho/mantra-cli#readme"
+}
