@@ -1,7 +1,7 @@
 {
   "name": "mantra-cli",
   "version": "0.1.0",
-  "description": "Generate files according to Mantra spec using CLI",
+  "description": "Command line interface for building Meteor apps with Mantra",
   "bin": {
     "mantra": "./bin/mantra"
   },
