@@ -42,14 +42,17 @@ describe("create", function() {
   it("creates a skeleton mantra app", function() {
     commands.create('blog');
     expect(checkFileOrDirExists('./blog')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/package.json')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/.gitignore')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/configs/context.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/actions/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/components/main_layout.jsx')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/modules/core/components/home.jsx')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/containers/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/configs/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/routes.jsx')).to.equal(true);
-    expect(checkFileOrDirExists('./blog/client/modules/main.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/main.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/lib/collections/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/publications/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/methods/index.js')).to.equal(true);
@@ -63,9 +66,7 @@ describe("generate", function() {
     fse.mkdirsSync('./tmp');
     process.chdir('./tmp');
 
-    suppressStdOut();
     commands.create('blog');
-    restoreStdOut();
     process.chdir('./blog');
   });
 
@@ -115,7 +116,7 @@ describe("generate", function() {
     it("updates lib/collections/index.js", function() {
       commands.generate('collection', 'posts');
       var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
-      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport {\n  posts\n};\n");
+      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport {\n  undefined\n  posts\n};\n");
     });
   });
 

@@ -6,7 +6,7 @@
     "mantra": "./bin/mantra"
   },
   "scripts": {
-    "test": "npm run-script compile && ./node_modules/.bin/_mocha ./test",
+    "test": "npm run-script compile && NODE_ENV=test  ./node_modules/.bin/_mocha ./test",
     "compile": "./node_modules/.bin/babel lib/ -d dist/",
     "prepublish": "npm run-script compile"
   },
