@@ -12,17 +12,19 @@ A command line interface for developing Meteor apps using [Mantra](https://githu
 
 ## Commands
 
-You can run any commands with `-h` to find more information.
+The available commands are:
 
-### 1. mantra create [path]
+* create
+* generate
 
-*alias: c*
+Currently, CLI expects you to be in the app root directory.
+
+
+### mantra create [path]
 
 Create a Meteor application using Mantra spec under `path`.
 
-### 2. mantra generate [type] [name]
-
-*alias: g*
+### mantra generate [type] [name]
 
 Generate a file of `type` and name specified `name`.
 
@@ -37,7 +39,7 @@ Possible values are:
 * method
 * publication
 
-For `container`, the command generates container, and then also generates the
+For `container`, the command generates `container`, and then also generates the
 corresponding `component`.
 
 **name**
