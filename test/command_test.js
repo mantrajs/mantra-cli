@@ -18,6 +18,16 @@ function checkFileOrDirExists(path) {
   return true;
 }
 
+var consoleLog = console.log;
+
+function suppressStdOut() {
+  console.log = function() {};
+}
+
+function restoreStdOut() {
+  console.log = consoleLog;
+}
+
 describe("create", function() {
   beforeEach(function() {
     fse.mkdirsSync('./tmp');
@@ -30,7 +40,9 @@ describe("create", function() {
   });
 
   it("creates a skeleton mantra app", function() {
+    suppressStdOut();
     commands.create('blog');
+    restoreStdOut();
     expect(checkFileOrDirExists('./blog')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/configs/context.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/actions/index.js')).to.equal(true);
