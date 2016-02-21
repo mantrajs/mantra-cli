@@ -6,7 +6,7 @@
     "mantra": "./bin/mantra"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run-script compile && ./node_modules/.bin/_mocha ./test",
     "compile": "./node_modules/.bin/babel lib/ -d dist/",
     "prepublish": "npm run-script compile"
   },
@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-preset-es2015": "^6.5.0"
+    "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
   }
 }
