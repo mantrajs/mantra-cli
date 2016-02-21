@@ -1,0 +1,9 @@
+import {<%= collectionName %>} from '/libs/collections';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
+
+export default function () {
+  Meteor.publish('<%= publicationFileName %>', function (<%= publicationFileName %>Id) {
+    return <%= collectionName %>.find(<%= publicationFileName %>Id);
+  });
+}
