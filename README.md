@@ -21,10 +21,12 @@ Currently, CLI expects you to be in the app root directory.
 
 
 ### mantra create [path]
+*Note: You can also use the alias "c":* `mantra c [path]`
 
 Create a Meteor application using Mantra spec under `path`.
 
 ### mantra generate [type] [name]
+*Note: You can also use the alias "g":* `mantra g [type] [name]`
 
 Generate a file of `type` and name specified `name`.
 
