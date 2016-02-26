@@ -146,8 +146,8 @@ export default Post;
 `);
     });
 
-    it("generates a class extending React.Component if klass option is provided", function() {
-      commands.generate('component', 'core:post', {klass: true});
+    it("generates a class extending React.Component if useClass option is provided", function() {
+      commands.generate('component', 'core:post', {useClass: true});
       var content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
