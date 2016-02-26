@@ -9,7 +9,9 @@ export default function (injectDeps, {FlowRouter}) {
   // FlowRouter.route('', {
   //   name: '',
   //   action() {
-  //
+  //     mount(MainLayoutCtx, {
+  //       content: () => (< />)
+  //     });
   //   }
   // });
 }
