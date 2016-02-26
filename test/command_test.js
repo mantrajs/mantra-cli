@@ -130,9 +130,40 @@ export default {
   });
 
   describe("component", function() {
-    it("generates a component", function() {
-      commands.generate('component', 'core:new_post');
-      expect(checkFileOrDirExists('./client/modules/core/components/new_post.jsx')).to.equal(true);
+    it("generates a stateless component by default", function() {
+      commands.generate('component', 'core:post');
+      var content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import React from 'react';
+
+const Post = () => (
+  <div>
+    Post
+  </div>
+);
+
+export default Post;
+`);
+    });
+
+    it("generates a class extending React.Component if klass option is provided", function() {
+      commands.generate('component', 'core:post', {klass: true});
+      var content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import React from 'react';
+
+class Post extends React.Component {
+  render() {
+    return (
+      <div>
+        Post
+      </div>
+    );
+  }
+});
+
+export default Post;
+`);
     });
   });
 
