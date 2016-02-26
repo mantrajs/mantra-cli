@@ -160,7 +160,7 @@ class Post extends React.Component {
       </div>
     );
   }
-});
+}
 
 export default Post;
 `);
