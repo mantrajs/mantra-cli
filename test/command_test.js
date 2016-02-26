@@ -146,21 +146,21 @@ export default {
       commands.generate('collection', 'posts');
       var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
       expect(indexContent).to.equal(
-`import posts from \'./posts\';
+`import Posts from \'./posts\';
 
 export {
   undefined,
-  posts
+  Posts
 };
 `);
     });
 
     it("updates a non-empty lib/collections/index.js", function() {
       var originalContent =
-`import posts from \'./posts\';
+`import Posts from \'./posts\';
 
 export {
-  posts
+  Posts
 };
 `;
       fs.writeFileSync('./lib/collections/index.js', originalContent);
@@ -168,12 +168,12 @@ export {
       commands.generate('collection', 'users');
       var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
       expect(indexContent).to.equal(
-`import posts from \'./posts\';
-import users from \'./users\';
+`import Posts from \'./posts\';
+import Users from \'./users\';
 
 export {
-  posts,
-  users
+  Posts,
+  Users
 };
 `);
     });
