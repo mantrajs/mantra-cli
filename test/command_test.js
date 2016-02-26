@@ -305,5 +305,27 @@ export default function () {
       expect(checkFileOrDirExists('./client/modules/comments/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/routes.jsx')).to.equal(true);
     });
+
+    it("updates client/main.js", function() {
+      commands.generate('module', 'comments');
+      var content = fs.readFileSync('./client/main.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+import commentsModule from './modules/comments';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.loadModule(commentsModule);
+app.init();
+`);
+    });
   });
 });
