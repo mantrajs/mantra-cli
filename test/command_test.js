@@ -293,4 +293,17 @@ export default function () {
 `);
     });
   });
+
+  describe("module", function() {
+    it("generates a module", function() {
+      commands.generate('module', 'comments');
+      expect(checkFileOrDirExists('./client/modules/comments')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/actions/index.js')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/components/')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/containers/')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/configs/')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/index.js')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/routes.jsx')).to.equal(true);
+    });
+  });
 });
