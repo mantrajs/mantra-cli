@@ -81,10 +81,39 @@ describe("generate", function() {
       expect(checkFileOrDirExists('./client/modules/core/actions/posts.js')).to.equal(true);
     });
 
-    it("updates index.js", function() {
+    it("updates an empty index.js", function() {
       commands.generate('action', 'core:posts');
       var indexContent = fs.readFileSync('./client/modules/core/actions/index.js', {encoding: 'utf-8'});
-      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport default {\n  posts\n};\n");
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+
+export default {
+  posts
+};
+`);
+    });
+
+    it("updates a non-empty index.js", function() {
+      var originalContent =
+`import posts from \'./posts\';
+
+export default {
+  posts
+};
+`;
+      fs.writeFileSync('./client/modules/core/actions/index.js', originalContent);
+
+      commands.generate('action', 'core:comments');
+      var indexContent = fs.readFileSync('./client/modules/core/actions/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import comments from \'./comments\';
+
+export default {
+  posts,
+  comments
+};
+`);
     });
   });
 
@@ -113,10 +142,40 @@ describe("generate", function() {
       expect(checkFileOrDirExists('./lib/collections/posts.js')).to.equal(true);
     });
 
-    it("updates lib/collections/index.js", function() {
+    it("updates an empty lib/collections/index.js", function() {
       commands.generate('collection', 'posts');
       var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
-      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport {\n  undefined\n  posts\n};\n");
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+
+export {
+  undefined,
+  posts
+};
+`);
+    });
+
+    it("updates a non-empty lib/collections/index.js", function() {
+      var originalContent =
+`import posts from \'./posts\';
+
+export {
+  posts
+};
+`;
+      fs.writeFileSync('./lib/collections/index.js', originalContent);
+
+      commands.generate('collection', 'users');
+      var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export {
+  posts,
+  users
+};
+`);
     });
   });
 
@@ -126,10 +185,39 @@ describe("generate", function() {
       expect(checkFileOrDirExists('./server/methods/posts.js')).to.equal(true);
     });
 
-    it("updates server/methods/index.js", function() {
+    it("updates an empty server/methods/index.js", function() {
       commands.generate('method', 'posts');
       var indexContent = fs.readFileSync('./server/methods/index.js', {encoding: 'utf-8'});
-      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport default function () {\n  posts();\n}\n");
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+
+export default function () {
+  posts();
+}
+`);
+    });
+
+    it("updates a non-empty server/methods/index.js", function() {
+      var originalContent =
+`import posts from \'./posts\';
+
+export default function () {
+  posts();
+}
+`;
+      fs.writeFileSync('./server/methods/index.js', originalContent);
+
+      commands.generate('method', 'users');
+      var indexContent = fs.readFileSync('./server/methods/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
     });
   });
 
@@ -139,10 +227,39 @@ describe("generate", function() {
       expect(checkFileOrDirExists('./server/publications/posts.js')).to.equal(true);
     });
 
-    it("updates server/publications/index.js", function() {
+    it("updates an empty server/publications/index.js", function() {
       commands.generate('publication', 'posts');
       var indexContent = fs.readFileSync('./server/publications/index.js', {encoding: 'utf-8'});
-      expect(indexContent).to.equal("import posts from \'./posts\';\n\nexport default function () {\n  posts();\n}\n");
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+
+export default function () {
+  posts();
+}
+`);
+    });
+
+    it("updates a non-empty server/publications/index.js", function() {
+      var originalContent =
+`import posts from './posts';
+
+export default function () {
+  posts();
+}
+`;
+      fs.writeFileSync('./server/publications/index.js', originalContent);
+
+      commands.generate('publication', 'users');
+      var indexContent = fs.readFileSync('./server/publications/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
     });
   });
 });
