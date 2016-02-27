@@ -617,4 +617,55 @@ export default function () {
       );
     });
   });
+
+  describe("module", function() {
+    it("removes the module directory", function() {
+      commands.generate('module', 'comments');
+      commands.destroy('module', 'comments');
+
+      expect(checkFileOrDirExists('./client/modules/comments')).to.equal(false);
+    });
+
+    it("updates the main.js file", function() {
+      var mainFilePath = './client/main.js';
+      var content =
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+import commentsModule from './modules/comments';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.loadModule(commentsModule);
+app.init();
+
+`;
+      fse.outputFileSync(mainFilePath, content);
+      commands.destroy('module', 'comments');
+      var updatedContent = fs.readFileSync(mainFilePath, {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.init();
+
+`
+      );
+    });
+  });
 });
