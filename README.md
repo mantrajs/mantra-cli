@@ -10,45 +10,58 @@ A command line interface for developing Meteor apps using [Mantra](https://githu
     npm install -g mantra-cli
 
 
-## Commands
+## Documentation
 
 The available commands are:
 
-* create
-* generate
+* [create](https://github.com/mantrajs/mantra-cli#mantra-create-path)
+* [generate](https://github.com/mantrajs/mantra-cli#mantra-generate-type-name)
+* [destroy](https://github.com/mantrajs/mantra-cli#mantra-destroy-type-name)
 
 Currently, CLI expects you to be in the app root directory.
 
+---------------------------------------
 
 ### mantra create [path]
-*Note: You can also use the alias "c":* `mantra c [path]`
+*alias: c*
 
 Create a Meteor application using Mantra spec under `path`.
 
+It creates a Meteor app, prepares the directories and files, adds Meteor and
+NPM dependencies, and installs the NPM dependencies.
+
+---------------------------------------
+
 ### mantra generate [type] [name]
-*Note: You can also use the alias "g":* `mantra g [type] [name]`
+*alias: g*
 
 Generate a file of `type` and name specified `name`.
 
-**type**
+#### type
 
 Possible values are:
 
-* action
-* component
-* container
-* collection
-* method
-* publication
+* `action`
+* `component`
 
-For `container`, the command generates `container`, and then also generates the
-corresponding `component`.
+By default, a stateless component is generated. By using `--use-class` option
+(alias `-uc`), you can generate a ES2015 class extending `React.Component`.
 
-**name**
+* `container`
+
+Generates a `container` and its corresponding `component`.
+
+* `collection`
+* `method`
+* `publication`
+* `module`
+
+
+#### name
 
 If the `type` is one of `action`, `component`, or `container`, the name should
 follow the format `moduleName:entityName`. This is because Mantra is modular
-on the client side, and all files of those types should belong to a module.
+on the client side, and all files of those types belong to a module.
 
 *Example*
 
@@ -56,33 +69,30 @@ on the client side, and all files of those types should belong to a module.
     mantra generate publication users
     mantra generate method comments
 
-#### Automatic update to index.js
+**Automatic update to index.js**
 
-For `action`, `collection`, `method`, and `publication`, the command
-automatically updates a `index.js` file to automatically include the newly
-generated file.
+For `action`, `collection`, `method`, and `publication`, the command automatically
+inserts `import` and `export` statements to the relevant `index.js` file.
 
-*Example*
+---------------------------------------
 
-    $ mantra generate action core:users
-      create  ./client/modules/core/actions/users.js
-      update  ./client/modules/core/actions/index.js
+### mantra destroy [type] [name]
+*alias: d*
 
-*./client/modules/core/actions/users.js*
-```js
-export default {
+Destroys all files that its counterpart `mantra generate` command would generate.
+You can provide all `types` supported by the `generate` commans.
 
-}
-```
+**This command removes files.**
 
-*./client/modules/core/actions/index.js*
-```js
-import users from './users';
+---------------------------------------
 
-export default {
-  users
-};
-```
+## Contributor Guide
+
+* Clone this repository and run `npm install`.
+* Write your code under `/lib`.
+* `npm run-script compile` compiles your ES2015 code in `/lib` into `/dist`.
+* `npm test` compiles the code and runs the tests.
+
 
 ## License
 
