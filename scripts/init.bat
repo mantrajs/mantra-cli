@@ -1,4 +1,3 @@
-SETLOCAL 
 set appPath=%1
 
 :: Create a Meteor app
