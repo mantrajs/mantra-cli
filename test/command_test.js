@@ -120,6 +120,11 @@ export default {
       commands.generate('action', 'core:group.post');
       expect(checkFileOrDirExists('./client/modules/core/actions/group.post.js')).to.equal(false);
     });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('action', 'core:groupPost');
+      expect(checkFileOrDirExists('./client/modules/core/actions/group_post.js')).to.equal(true);
+    });
   });
 
   describe("container", function() {
@@ -137,6 +142,12 @@ export default {
       commands.generate('container', 'core:header.menu');
       expect(checkFileOrDirExists('./client/modules/core/containers/header.menu.js')).to.equal(false);
       expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('container', 'core:headerMenu');
+      expect(checkFileOrDirExists('./client/modules/core/containers/header_menu.js')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
   });
 
@@ -180,6 +191,11 @@ export default Post;
     it("does not generate if entity name contains a dot", function() {
       commands.generate('component', 'core:header.menu');
       expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('component', 'core:headerMenu');
+      expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
   });
 
@@ -229,6 +245,11 @@ export {
       commands.generate('collection', 'user.info');
       expect(checkFileOrDirExists('./lib/collections/user.info.js')).to.equal(false);
     });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('collection', 'userInfo');
+      expect(checkFileOrDirExists('./lib/collections/user_info.js')).to.equal(true);
+    });
   });
 
   describe("method", function() {
@@ -275,6 +296,11 @@ export default function () {
     it("does not generate if entity name contains a dot", function() {
       commands.generate('method', 'group.note');
       expect(checkFileOrDirExists('./server/methods/group.note.js')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('method', 'groupNote');
+      expect(checkFileOrDirExists('./server/methods/group_note.js')).to.equal(true);
     });
   });
 
@@ -323,6 +349,11 @@ export default function () {
       commands.generate('publication', 'group.note');
       expect(checkFileOrDirExists('./server/publications/group.note.js')).to.equal(false);
     });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      commands.generate('publication', 'groupNote');
+      expect(checkFileOrDirExists('./server/publications/group_note.js')).to.equal(true);
+    });
   });
 
   describe("module", function() {
@@ -362,6 +393,11 @@ app.init();
     it("does not generate if entity name contains a dot", function() {
       commands.generate('module', 'group.notes');
       expect(checkFileOrDirExists('./client/modules/group.notes/')).to.equal(false);
+    });
+
+    it("converts the module name to snakecase for the directory name", function() {
+      commands.generate('module', 'groupNotes');
+      expect(checkFileOrDirExists('./client/modules/group_notes')).to.equal(true);
     });
   });
 });
