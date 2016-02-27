@@ -115,6 +115,11 @@ export default {
 };
 `);
     });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('action', 'core:group.post');
+      expect(checkFileOrDirExists('./client/modules/core/actions/group.post.js')).to.equal(false);
+    });
   });
 
   describe("container", function() {
@@ -126,6 +131,12 @@ export default {
     it("generates a component", function() {
       commands.generate('container', 'core:post');
       expect(checkFileOrDirExists('./client/modules/core/components/post.jsx')).to.equal(true);
+    });
+
+    it("does not generate any files if entity name contains a dot", function() {
+      commands.generate('container', 'core:header.menu');
+      expect(checkFileOrDirExists('./client/modules/core/containers/header.menu.js')).to.equal(false);
+      expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
     });
   });
 
@@ -164,6 +175,11 @@ class Post extends React.Component {
 
 export default Post;
 `);
+    });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('component', 'core:header.menu');
+      expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
     });
   });
 
@@ -208,6 +224,11 @@ export {
 };
 `);
     });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('collection', 'user.info');
+      expect(checkFileOrDirExists('./lib/collections/user.info.js')).to.equal(false);
+    });
   });
 
   describe("method", function() {
@@ -249,6 +270,11 @@ export default function () {
   users();
 }
 `);
+    });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('method', 'group.note');
+      expect(checkFileOrDirExists('./server/methods/group.note.js')).to.equal(false);
     });
   });
 
@@ -292,6 +318,11 @@ export default function () {
 }
 `);
     });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('publication', 'group.note');
+      expect(checkFileOrDirExists('./server/publications/group.note.js')).to.equal(false);
+    });
   });
 
   describe("module", function() {
@@ -326,6 +357,11 @@ app.loadModule(coreModule);
 app.loadModule(commentsModule);
 app.init();
 `);
+    });
+
+    it("does not generate if entity name contains a dot", function() {
+      commands.generate('module', 'group.notes');
+      expect(checkFileOrDirExists('./client/modules/group.notes/')).to.equal(false);
     });
   });
 });
