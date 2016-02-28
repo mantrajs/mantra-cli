@@ -401,3 +401,271 @@ app.init();
     });
   });
 });
+
+describe("destroy", function() {
+  beforeEach(function() {
+    fse.mkdirsSync('./tmp');
+    process.chdir('./tmp');
+
+    commands.create('blog');
+    process.chdir('./blog');
+  });
+
+  afterEach(function() {
+    process.chdir('../../');
+    fse.removeSync('./tmp/blog');
+  });
+
+  describe("action", function() {
+    it("removes the action file", function() {
+      var actionPath = './client/modules/core/actions/posts.js';
+      fse.outputFileSync(actionPath, 'dummy content');
+      var indexContent =
+`import posts from './posts';
+
+export default {
+  posts
+};
+`;
+      fse.outputFileSync('./client/modules/core/actions/index.js', indexContent);
+      commands.destroy('action', 'core:posts');
+      expect((checkFileOrDirExists(actionPath))).to.equal(false);
+    });
+
+    it("can update the index file to an empty file", function() {
+      fse.outputFileSync('./client/modules/core/actions/posts.js', 'dummy content');
+      var indexContent =
+`import posts from './posts';
+
+export default {
+  posts
+};
+`;
+      fse.outputFileSync('./client/modules/core/actions/index.js', indexContent);
+      commands.destroy('action', 'core:posts');
+      var updatedContent = fs.readFileSync(
+        './client/modules/core/actions/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`
+export default {
+};
+`
+      );
+    });
+
+    it("updates the index file", function() {
+      fse.outputFileSync('./client/modules/core/actions/posts.js', 'dummy content');
+      var indexContent =
+`import posts from './posts';
+import users from './users';
+
+export default {
+  posts,
+  users
+};
+`;
+      fse.outputFileSync('./client/modules/core/actions/index.js', indexContent);
+      commands.destroy('action', 'core:posts');
+      var updatedContent = fs.readFileSync(
+        './client/modules/core/actions/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import users from './users';
+
+export default {
+  users
+};
+`
+      );
+    });
+  });
+
+  describe("component", function() {
+    it("removes the component file", function() {
+      var componentPath = './client/modules/core/components/posts.jsx';
+      fse.outputFileSync(componentPath, 'dummy content');
+      commands.destroy('component', 'core:posts');
+      expect((checkFileOrDirExists(componentPath))).to.equal(false);
+    });
+  });
+
+  describe("container", function() {
+    it("removes the container file", function() {
+      var containerPath = './client/modules/core/containers/posts.js';
+      fse.outputFileSync(containerPath, 'dummy content');
+      commands.destroy('container', 'core:posts');
+      expect((checkFileOrDirExists(containerPath))).to.equal(false);
+    });
+
+    it("removes the component file", function() {
+      var componentPath = './client/modules/core/components/posts.jsx';
+      fse.outputFileSync(componentPath, 'dummy content');
+      commands.destroy('container', 'core:posts');
+      expect((checkFileOrDirExists(componentPath))).to.equal(false);
+    });
+  });
+
+  describe("collection", function() {
+    it("removes the collection file", function() {
+      var collectionPath = './lib/collections/posts.js';
+      fse.outputFileSync(collectionPath, 'dummy content');
+      commands.destroy('collection', 'posts');
+      expect((checkFileOrDirExists(collectionPath))).to.equal(false);
+    });
+
+    it("updates the index file", function() {
+      fse.outputFileSync('./lib/collections/posts.js', 'dummy content');
+      var indexContent =
+`import posts from './posts';
+import users from './users';
+import comments from './comments';
+
+export default {
+  posts,
+  users,
+  comments
+};
+`;
+      fse.outputFileSync('./lib/collections/index.js', indexContent);
+      commands.destroy('collection', 'posts');
+      var updatedContent = fs.readFileSync(
+        './lib/collections/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import users from './users';
+import comments from './comments';
+
+export default {
+  users,
+  comments
+};
+`
+      );
+    });
+  });
+
+  describe("method", function() {
+    it("removes the method file", function() {
+      var methodPath = './server/methods/posts.js';
+      fse.outputFileSync(methodPath, 'dummy content');
+      commands.destroy('method', 'posts');
+      expect((checkFileOrDirExists(methodPath))).to.equal(false);
+    });
+
+    it("updates the index file", function() {
+      fse.outputFileSync('./server/methods/posts.js', 'dummy content');
+      var indexContent =
+`import users from './users';
+import posts from './posts';
+import groupActivities from './group_activities';
+
+export default function () {
+  users();
+  posts();
+  groupActivities();
+}
+`;
+      fse.outputFileSync('./server/methods/index.js', indexContent);
+      commands.destroy('method', 'groupActivities');
+      var updatedContent = fs.readFileSync(
+        './server/methods/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import users from './users';
+import posts from './posts';
+
+export default function () {
+  users();
+  posts();
+}
+`
+      );
+    });
+  });
+
+  describe("publication", function() {
+    it("removes the publication file", function() {
+      var publicationPath = './server/publications/posts.js';
+      fse.outputFileSync(publicationPath, 'dummy content');
+      commands.destroy('publication', 'posts');
+      expect((checkFileOrDirExists(publicationPath))).to.equal(false);
+    });
+
+    it("updates the index file", function() {
+      fse.outputFileSync('./server/publications/posts.js', 'dummy content');
+      var indexContent =
+`import users from './users';
+import posts from './posts';
+import groupActivities from './group_activities';
+
+export default function () {
+  users();
+  posts();
+  groupActivities();
+}
+`;
+      fse.outputFileSync('./server/publications/index.js', indexContent);
+      commands.destroy('publication', 'groupActivities');
+      var updatedContent = fs.readFileSync(
+        './server/publications/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import users from './users';
+import posts from './posts';
+
+export default function () {
+  users();
+  posts();
+}
+`
+      );
+    });
+  });
+
+  describe("module", function() {
+    it("removes the module directory", function() {
+      commands.generate('module', 'comments');
+      commands.destroy('module', 'comments');
+
+      expect(checkFileOrDirExists('./client/modules/comments')).to.equal(false);
+    });
+
+    it("updates the main.js file", function() {
+      var mainFilePath = './client/main.js';
+      var content =
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+import commentsModule from './modules/comments';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.loadModule(commentsModule);
+app.init();
+
+`;
+      fse.outputFileSync(mainFilePath, content);
+      commands.destroy('module', 'comments');
+      var updatedContent = fs.readFileSync(mainFilePath, {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+app.loadModule(coreModule);
+app.init();
+
+`
+      );
+    });
+  });
+});

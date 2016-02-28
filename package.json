@@ -1,6 +1,6 @@
 {
   "name": "mantra-cli",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Command line interface for building Meteor apps with Mantra",
   "bin": {
     "mantra": "./bin/mantra"
@@ -28,7 +28,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "editer": "^0.4.0-rc.1",
+    "editer": "^0.4.0",
     "fs-extra": "^0.26.5",
     "locater": "^1.3.0",
     "lodash": "^4.5.0",
