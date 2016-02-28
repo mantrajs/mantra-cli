@@ -80,7 +80,7 @@ inserts `import` and `export` statements to the relevant `index.js` file.
 *alias: d*
 
 Destroys all files that its counterpart `mantra generate` command would generate.
-You can provide all `types` supported by the `generate` commans.
+You can provide all `types` supported by the `generate` command.
 
 **This command removes files.**
 
