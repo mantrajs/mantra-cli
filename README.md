@@ -52,6 +52,12 @@ By default, a stateless component is generated. By using `--use-class` option
 Generates a `container` and its corresponding `component`.
 
 * `collection`
+
+Use `--schema` option (alias `-s`) to specify the schema solution to use for
+your Mongo collections. Currently, you can specify `collection2`.
+
+    mantra g collection books -s collection2
+
 * `method`
 * `publication`
 * `module`

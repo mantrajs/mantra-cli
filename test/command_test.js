@@ -205,6 +205,18 @@ export default Post;
       expect(checkFileOrDirExists('./lib/collections/posts.js')).to.equal(true);
     });
 
+    it("uses collection2 if schema option is specified so", function() {
+      commands.generate('collection', 'posts', {schema: 'collection2'});
+      var content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
+      expect(content).to.match(/attachSchema/);
+    });
+
+    it("does not use collection2 if no viable schema option is provided", function() {
+      commands.generate('collection', 'posts');
+      var content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
+      expect(content).to.not.match(/attachSchema/);
+    });
+
     it("updates an empty lib/collections/index.js", function() {
       commands.generate('collection', 'posts');
       var indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});

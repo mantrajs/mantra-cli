@@ -2,11 +2,11 @@ import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 
 const <%= collectionName %> = new Mongo.Collection('<%= collectionFileName %>');
-
+<% if (collection2) { %>
 let schema = new SimpleSchema({
-  
+
 });
 
 <%= collectionName %>.attachSchema(schema);
-
+<% } %>
 export default <%= collectionName %>;
