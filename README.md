@@ -45,7 +45,9 @@ Possible values are:
 * `component`
 
 By default, a stateless component is generated. By using `--use-class` option
-(alias `-uc`), you can generate a ES2015 class extending `React.Component`.
+(alias `-u`), you can generate a ES2015 class extending `React.Component`.
+
+    mantra g component core:user_list -u
 
 * `container`
 
