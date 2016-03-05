@@ -28,6 +28,18 @@ function restoreStdOut() {
   console.log = consoleLog;
 }
 
+function prepareTestApp() {
+  suppressStdOut();
+  fse.mkdirsSync('./tmp');
+  process.chdir('./tmp');
+
+  commands.create('blog');
+  process.chdir('./blog');
+
+  fse.outputFileSync('./.meteor/packages', 'test');
+  restoreStdOut();
+}
+
 describe("create", function() {
   beforeEach(function() {
     fse.mkdirsSync('./tmp');
@@ -63,11 +75,7 @@ describe("create", function() {
 
 describe("generate", function() {
   beforeEach(function() {
-    fse.mkdirsSync('./tmp');
-    process.chdir('./tmp');
-
-    commands.create('blog');
-    process.chdir('./blog');
+    prepareTestApp();
   });
 
   afterEach(function() {
@@ -416,11 +424,7 @@ app.init();
 
 describe("destroy", function() {
   beforeEach(function() {
-    fse.mkdirsSync('./tmp');
-    process.chdir('./tmp');
-
-    commands.create('blog');
-    process.chdir('./blog');
+    prepareTestApp();
   });
 
   afterEach(function() {
