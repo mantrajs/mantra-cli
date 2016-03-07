@@ -1,3 +1,7 @@
+## 0.3.3 (March 8 2016)
+
+* Update meteor version to 1.3-beta.12 ([#28](https://github.com/mantrajs/mantra-cli/pull/28))
+
 ## 0.3.2 (March 5 2016)
 
 * Make collection2 optional when generating a collection. You can generate
