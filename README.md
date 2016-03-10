@@ -9,6 +9,9 @@ A command line interface for developing Meteor apps using [Mantra](https://githu
 
     npm install -g mantra-cli
 
+See [RELEASE NOTE](https://github.com/mantrajs/mantra-cli/blob/master/RELEASE_NOTE.md)
+if you are upgrading and wondering what has changed in the latest version.
+
 
 ## Documentation
 
