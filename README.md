@@ -30,10 +30,15 @@ Currently, CLI expects you to be in the app root directory.
 
 Create a Meteor application using Mantra spec under `path`.
 
-It creates a Meteor app, prepares the directories and files, adds Meteor and
-NPM dependencies, and installs the NPM dependencies.
+It performs the following tasks:
 
-**Options**
+* Create a Meteor app
+* Prepare a skeleton structure for Mantra and add `.eslintrc` and `.gitignore`
+* Add Meteor and NPM dependencies
+* Install NPM dependencies
+
+
+#### Options
 
 * `--verbose, -v`
 
