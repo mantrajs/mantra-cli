@@ -33,6 +33,12 @@ Create a Meteor application using Mantra spec under `path`.
 It creates a Meteor app, prepares the directories and files, adds Meteor and
 NPM dependencies, and installs the NPM dependencies.
 
+**Options**
+
+* `--verbose, -v`
+
+Log the output of the scripts in the console, rather than silencing them.
+
 ---------------------------------------
 
 ### mantra generate [type] [name]
@@ -90,10 +96,10 @@ inserts `import` and `export` statements to the relevant `index.js` file.
 ### mantra destroy [type] [name]
 *alias: d*
 
+**This command removes files.**
+
 Destroys all files that its counterpart `mantra generate` command would generate.
 You can provide all `types` supported by the `generate` command.
-
-**This command removes files.**
 
 ---------------------------------------
 
