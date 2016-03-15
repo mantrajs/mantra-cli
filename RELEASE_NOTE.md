@@ -1,3 +1,12 @@
+## 0.3.5 (March 15 2016)
+
+* Add verbose option for `mantra create`
+* Include ESLint when generating a new app
+* Fix file path in the import statements ([#38](https://github.com/mantrajs/mantra-cli/issues/38), [9dc97f](https://github.com/mantrajs/mantra-cli/commit/9dc97fa494a0b5a867f059ec350ed2d83b0c6461))
+* Bump the Meteor version to Meteor 1.3-rc.1
+* Better error handling for `mantra create` by checking the required argument
+([#31](https://github.com/mantrajs/mantra-cli/pull/31))
+
 ## 0.3.4 (March 11 2016)
 
 * Correct the import path in publication files ([#29](https://github.com/mantrajs/mantra-cli/pull/29/files))
