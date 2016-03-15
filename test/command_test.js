@@ -70,6 +70,7 @@ describe("create", function() {
     expect(checkFileOrDirExists('./blog/server/methods/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/configs/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/main.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/.eslintrc')).to.equal(true);
   });
 });
 
