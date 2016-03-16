@@ -19,6 +19,6 @@
     "react-mounter": "^1.0.0",
     "react-simple-di": "^1.0.1",
     "eslint": "1.10.x",
-    "eslint-plugin-react": "3.15.x",
+    "eslint-plugin-react": "3.15.x"
   }
 }
