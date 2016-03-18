@@ -25,7 +25,7 @@ Currently, CLI expects you to be in the app root directory.
 
 ---------------------------------------
 
-### mantra create [path]
+### mantra create [path][options]
 *alias: c*
 
 Create a Meteor application using Mantra spec under `path`.
