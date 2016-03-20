@@ -1,3 +1,7 @@
+## 0.3.6 (March 20 2016)
+
+* Fix the syntax error in the generated `package.json` file ([#39](https://github.com/mantrajs/mantra-cli/issues/39))
+
 ## 0.3.5 (March 15 2016)
 
 * Add verbose option for `mantra create`
