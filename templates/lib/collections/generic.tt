@@ -1,5 +1,7 @@
 import {Mongo} from 'meteor/mongo';
+<% if (collection2) { %>
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+<% } %>
 
 const <%= collectionName %> = new Mongo.Collection('<%= collectionFileName %>');
 <% if (collection2) { %>
