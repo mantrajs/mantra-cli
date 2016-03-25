@@ -3,6 +3,8 @@ import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
 import <%= componentName %> from '../components/<%= componentFileName %>.jsx';
 
 export const composer = ({context}, onData) => {
+  const {Meteor, Collections} = context();
+
   onData(null, {});
 };
 
