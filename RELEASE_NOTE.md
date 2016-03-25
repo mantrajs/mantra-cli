@@ -1,3 +1,8 @@
+## 0.3.7 (March 25 2016)
+
+* Make sure destroy command updates index.js correctly (fix [#41](https://github.com/mantrajs/mantra-cli/issues/41))
+* Stop importing SimpleSchema by default (fix [#40](https://github.com/mantrajs/mantra-cli/issues/40))
+
 ## 0.3.6 (March 20 2016)
 
 * Fix the syntax error in the generated `package.json` file ([#39](https://github.com/mantrajs/mantra-cli/issues/39))
