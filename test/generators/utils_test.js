@@ -1,6 +1,9 @@
 import {expect} from 'chai';
-import * as utils from '../../lib/generators/utils';
+import path from 'path';
 import fse from 'fs-extra';
+import _ from 'lodash';
+
+import * as utils from '../../lib/generators/utils';
 
 describe("removeWholeLine", function() {
   it("removes the whole line on which the given string appears", function() {
@@ -76,5 +79,170 @@ export default function () {
 }
 `
     );
+  });
+});
+
+describe("getOutputPath", function() {
+  it("returns a correct output path for collection", function() {
+    let result = utils.getOutputPath('collection', 'users');
+    expect(result).to.equal('./lib/collections/users.js');
+  });
+
+  it("returns a correct output path for method", function() {
+    let result = utils.getOutputPath('method', 'users');
+    expect(result).to.equal('./server/methods/users.js');
+  });
+
+  it("returns a correct output path for publication", function() {
+    let result = utils.getOutputPath('publication', 'users');
+    expect(result).to.equal('./server/publications/users.js');
+  });
+
+  it("returns a correct output path for action", function() {
+    let result = utils.getOutputPath('action', 'users', 'core');
+    expect(result).to.equal('./client/modules/core/actions/users.js');
+  });
+
+  it("returns a correct output path for container", function() {
+    let result = utils.getOutputPath('container', 'user_list', 'core');
+    expect(result).to.equal('./client/modules/core/containers/user_list.js');
+  });
+
+  it("returns a correct output path for component", function() {
+    let result = utils.getOutputPath('component', 'user_list', 'core');
+    expect(result).to.equal('./client/modules/core/components/user_list.jsx');
+  });
+});
+
+describe("getTemplateVaraibles", function() {
+  describe("for components", function() {
+    let expected = {
+      componentName: 'UserList'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('component', 'userList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('component', 'user_list');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('component', 'UserList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for containers", function() {
+    let expected = {
+      componentName: 'UserList',
+      componentFileName: 'user_list'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('container', 'userList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('container', 'user_list');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('container', 'UserList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for collections", function() {
+    let expected = {
+      collectionName: 'PullRequests',
+      collectionFileName: 'pull_requests',
+      collection2: false
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('collection', 'pullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('collection', 'pull_requests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('collection', 'PullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets templates variables with collection2 option", function() {
+      let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'collection2'});
+      let matched = _.isEqual(result, _.assign(expected, {collection2: true}));
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for methods", function() {
+    let expected = {
+      collectionName: 'PullRequests',
+      methodFileName: 'pull_requests'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('method', 'pullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('method', 'pull_requests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('method', 'PullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for publications", function() {
+    let expected = {
+      collectionName: 'PullRequests',
+      publicationFileName: 'pull_requests'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('publication', 'pullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('publication', 'pull_requests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('publication', 'PullRequests');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
   });
 });
