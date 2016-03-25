@@ -1,4 +1,4 @@
-var fs = require('fs');
+let fs = require('fs');
 var expect = require('chai').expect;
 var fse = require('fs-extra');
 
@@ -532,14 +532,14 @@ export default {
     it("updates the index file", function() {
       fse.outputFileSync('./lib/collections/posts.js', 'dummy content');
       var indexContent =
-`import posts from './posts';
-import users from './users';
-import comments from './comments';
+`import Posts from './posts';
+import Users from './users';
+import Comments from './comments';
 
 export default {
-  posts,
-  users,
-  comments
+  Posts,
+  Users,
+  Comments
 };
 `;
       fse.outputFileSync('./lib/collections/index.js', indexContent);
@@ -547,12 +547,12 @@ export default {
       var updatedContent = fs.readFileSync(
         './lib/collections/index.js', {encoding: 'utf-8'});
       expect(updatedContent).to.equal(
-`import users from './users';
-import comments from './comments';
+`import Users from './users';
+import Comments from './comments';
 
 export default {
-  users,
-  comments
+  Users,
+  Comments
 };
 `
       );
