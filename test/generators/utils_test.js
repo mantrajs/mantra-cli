@@ -246,3 +246,15 @@ describe("getTemplateVaraibles", function() {
     });
   });
 });
+
+describe("checkForModuleName", function() {
+  it("returns true if module name is provided", function() {
+    let result = utils.checkForModuleName('core:user_list');
+    expect(result).to.equal(true);
+  });
+
+  it("returns false if module name is provided", function() {
+    let result = utils.checkForModuleName('user_list');
+    expect(result).to.equal(false);
+  });
+});
