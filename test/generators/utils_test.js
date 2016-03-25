@@ -20,7 +20,7 @@ describe("removeWholeLine", function() {
 });
 
 describe("removeFromIndexFile", function() {
-  let dummyPath = './tmp/removeFromIndexFile/sample.js';
+  let dummyPath = path.resolve(__dirname, '../../tmp/removeFromIndexFile.js');
 
   afterEach(function() {
     // Cleanup
