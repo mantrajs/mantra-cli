@@ -51,6 +51,7 @@ describe("create", function() {
     process.chdir('../');
   });
 
+
   it("creates a skeleton mantra app", function() {
     commands.create('blog');
     expect(checkFileOrDirExists('./blog')).to.equal(true);
@@ -72,6 +73,7 @@ describe("create", function() {
     expect(checkFileOrDirExists('./blog/server/main.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.eslintrc')).to.equal(true);
   });
+
 });
 
 describe("generate", function() {
