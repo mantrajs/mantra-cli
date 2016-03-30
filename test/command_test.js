@@ -51,7 +51,6 @@ describe("create", function() {
     process.chdir('../');
   });
 
-
   it("creates a skeleton mantra app", function() {
     commands.create('blog');
     expect(checkFileOrDirExists('./blog')).to.equal(true);
