@@ -12,6 +12,9 @@ A command line interface for developing Meteor apps using [Mantra](https://githu
 See [RELEASE NOTE](https://github.com/mantrajs/mantra-cli/blob/master/RELEASE_NOTE.md)
 if you are upgrading and wondering what has changed in the latest version.
 
+**Meteor version 1.3 or higher** needs to be present in your machine to create
+and run apps with mantra-cli.
+
 
 ## Documentation
 
