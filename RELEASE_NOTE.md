@@ -1,3 +1,7 @@
+## 0.3.8 (April 2 2016)
+
+* Use the latest Meteor version for apps created by `mantra create` ([#47](https://github.com/mantrajs/mantra-cli/pull/47))
+
 ## 0.3.7 (March 25 2016)
 
 * Make sure destroy command updates index.js correctly (fix [#41](https://github.com/mantrajs/mantra-cli/issues/41))
