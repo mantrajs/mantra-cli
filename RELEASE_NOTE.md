@@ -1,3 +1,10 @@
+## 0.3.9 (April 17 2016)
+
+* Update ESLint to `2.x.x` ([#56](https://github.com/mantrajs/mantra-cli/pull/56)). [@haizi-zh](https://github.com/haizi-zh)
+* Fix the case of collection name in `index.js` ([#55](https://github.com/mantrajs/mantra-cli/issues/55))
+* Generate libs directory under modules. ([#51](https://github.com/mantrajs/mantra-cli/issues/51))
+* Initialize methods ([#50](https://github.com/mantrajs/mantra-cli/issues/50))
+
 ## 0.3.8 (April 2 2016)
 
 * Use the latest Meteor version for apps created by `mantra create` ([#47](https://github.com/mantrajs/mantra-cli/pull/47))
