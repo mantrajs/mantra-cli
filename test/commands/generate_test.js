@@ -179,15 +179,15 @@ export {
 `;
       fs.writeFileSync('./lib/collections/index.js', originalContent);
 
-      generate('collection', 'users');
+      generate('collection', 'postCategories');
       let indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
       expect(indexContent).to.equal(
 `import Posts from \'./posts\';
-import Users from \'./users\';
+import PostCategories from \'./post_categories\';
 
 export {
   Posts,
-  Users
+  PostCategories
 };
 `);
     });
