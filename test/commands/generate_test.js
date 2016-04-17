@@ -311,6 +311,7 @@ export default function () {
     it("generates a module", function() {
       generate('module', 'comments');
       expect(checkFileOrDirExists('./client/modules/comments')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/libs')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/actions/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/components/')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/containers/')).to.equal(true);
