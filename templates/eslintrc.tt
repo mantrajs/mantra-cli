@@ -187,6 +187,7 @@
     "wrap-iife": 2,
     "wrap-regex": 0,
     "yoda": [2, "never", {"exceptRange": true}],
-    "react/jsx-uses-react": 1
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1
   }
 }
