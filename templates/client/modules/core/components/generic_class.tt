@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class <%= componentName %> extends React.Component {
+export default class <%= componentName %> extends Component {
   render() {
     return (
       <div>
@@ -9,5 +9,3 @@ class <%= componentName %> extends React.Component {
     );
   }
 }
-
-export default <%= componentName %>;
