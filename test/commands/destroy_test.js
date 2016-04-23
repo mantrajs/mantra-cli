@@ -30,6 +30,13 @@ export default {
       expect((checkFileOrDirExists(actionPath))).to.equal(false);
     });
 
+    it("removes the test file", function() {
+      let testPath = './client/modules/core/actions/tests/posts.js';
+      fse.outputFileSync(testPath, 'dummy content');
+      destroy('action', 'core:posts');
+      expect((checkFileOrDirExists(testPath))).to.equal(false);
+    });
+
     it("can update the index file to an empty file", function() {
       fse.outputFileSync('./client/modules/core/actions/posts.js', 'dummy content');
       let indexContent =
@@ -84,6 +91,13 @@ export default {
       destroy('component', 'core:posts');
       expect((checkFileOrDirExists(componentPath))).to.equal(false);
     });
+
+    it("removes the test file", function() {
+      let testPath = './client/modules/core/components/tests/post_list.js';
+      fse.outputFileSync(testPath, 'dummy content');
+      destroy('component', 'core:postList');
+      expect((checkFileOrDirExists(testPath))).to.equal(false);
+    });
   });
 
   describe("container", function() {
@@ -99,6 +113,20 @@ export default {
       fse.outputFileSync(componentPath, 'dummy content');
       destroy('container', 'core:posts');
       expect((checkFileOrDirExists(componentPath))).to.equal(false);
+    });
+
+    it("removes the test file for container", function() {
+      let testPath = './client/modules/core/containers/tests/post_list.js';
+      fse.outputFileSync(testPath, 'dummy content');
+      destroy('container', 'core:postList');
+      expect((checkFileOrDirExists(testPath))).to.equal(false);
+    });
+
+    it("removes the test file for component", function() {
+      let testPath = './client/modules/core/components/tests/post_list.js';
+      fse.outputFileSync(testPath, 'dummy content');
+      destroy('container', 'core:postList');
+      expect((checkFileOrDirExists(testPath))).to.equal(false);
     });
   });
 
