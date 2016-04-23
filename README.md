@@ -81,6 +81,8 @@ your Mongo collections. Currently, you can specify `collection2`.
 * `publication`
 * `module`
 
+For `action`, `component`, and `container`, tests will also be generated.
+
 
 #### name
 
