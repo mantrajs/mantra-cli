@@ -1,3 +1,8 @@
+## 0.3.10 (April 23 2016)
+
+* Generate tests for `action`, `component`, and `container`.
+* Add constructor to classical React components ([#57](https://github.com/mantrajs/mantra-cli/issues/57))
+
 ## 0.3.9 (April 17 2016)
 
 * Update ESLint to `2.x.x` ([#56](https://github.com/mantrajs/mantra-cli/pull/56)). [@haizi-zh](https://github.com/haizi-zh)
