@@ -285,4 +285,23 @@ describe("getTestTemplateVaraibles", function() {
       expect(matched).to.equal(true);
     });
   });
+
+  describe("for actions", function() {
+    let expected = {
+      actionFileName: 'flagged_comments',
+      moduleName: 'core'
+    };
+
+    it("getes templates varaibles - variation 1", function() {
+      let result = utils.getTestTemplateVaraibles('action', 'core', 'flagged_comments');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("getes templates varaibles - variation 2", function() {
+      let result = utils.getTestTemplateVaraibles('action', 'core', 'flaggedComments');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
 });

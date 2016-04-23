@@ -1,0 +1,8 @@
+const {describe, it} = global;
+import {expect} from 'chai';
+import {spy, stub} from 'sinon';
+import actions from '../<%= actionFileName %>';
+
+describe('<%= moduleName %>.actions.<%= actionFileName %>', () => {
+  it('should do something');
+});

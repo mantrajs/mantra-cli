@@ -64,6 +64,21 @@ export default {
       generate('action', 'core:groupPost');
       expect(checkFileOrDirExists('./client/modules/core/actions/group_post.js')).to.equal(true);
     });
+
+    it("generates a test file", function() {
+      generate('action', 'core:flaggedComments');
+      let content = fs.readFileSync('./client/modules/core/actions/tests/flagged_comments.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`const {describe, it} = global;
+import {expect} from 'chai';
+import {spy, stub} from 'sinon';
+import actions from '../flagged_comments';
+
+describe('core.actions.flagged_comments', () => {
+  it('should do something');
+});
+`);
+    });
   });
 
   describe("container", function() {
