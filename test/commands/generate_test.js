@@ -103,6 +103,48 @@ describe('core.actions.flagged_comments', () => {
       expect(checkFileOrDirExists('./client/modules/core/containers/header_menu.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
+
+    it("generates a test file for the container", function() {
+      generate('container', 'core:commentList');
+      let content = fs.readFileSync('./client/modules/core/containers/tests/comment_list.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`const {describe, it} = global;
+import {expect} from 'chai';
+import {stub, spy} from 'sinon';
+import {composer} from '../comment_list';
+
+describe('core.containers.comment_list', () => {
+  describe('composer', () => {
+
+//    const Tracker = {nonreactive: cb => cb()};
+//    const getCollections = (post) => {
+//      const Collections = {
+//        Posts: {findOne: stub()}
+//      };
+//      Collections.Posts.findOne.returns(post);
+//      return Collections;
+//    };
+
+    it('should do something');
+  });
+});
+`);
+    });
+
+    it("generates a test file for the component", function() {
+      generate('container', 'core:commentList');
+      let content = fs.readFileSync('./client/modules/core/components/tests/comment_list.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`const {describe, it} = global;
+import {expect} from 'chai';
+import {shallow} from 'enzyme';
+import CommentList from '../comment_list';
+
+describe('core.components.comment_list', () => {
+  it('should do something');
+});
+`);
+    });
   });
 
   describe("component", function() {

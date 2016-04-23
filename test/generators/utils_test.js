@@ -304,4 +304,23 @@ describe("getTestTemplateVaraibles", function() {
       expect(matched).to.equal(true);
     });
   });
+
+  describe("for containers", function() {
+    let expected = {
+      containerFileName: 'comment_lists',
+      moduleName: 'core'
+    };
+
+    it("getes templates varaibles - variation 1", function() {
+      let result = utils.getTestTemplateVaraibles('container', 'core', 'comment_lists');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("getes templates varaibles - variation 2", function() {
+      let result = utils.getTestTemplateVaraibles('container', 'core', 'comment_lists');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
 });
