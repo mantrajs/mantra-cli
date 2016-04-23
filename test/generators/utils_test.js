@@ -258,3 +258,31 @@ describe("checkForModuleName", function() {
     expect(result).to.equal(false);
   });
 });
+
+describe("getTestTemplateVaraibles", function() {
+  describe("for components", function() {
+    let expected = {
+      componentName: 'HeaderMenu',
+      componentFileName: 'header_menu',
+      moduleName: 'user_management'
+    };
+
+    it("getes templates varaibles - variation 1", function() {
+      let result = utils.getTestTemplateVaraibles('component', 'user_management', 'headerMenu');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("getes templates varaibles - variation 2", function() {
+      let result = utils.getTestTemplateVaraibles('component', 'userManagement', 'headerMenu');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("getes templates varaibles - variation 3", function() {
+      let result = utils.getTestTemplateVaraibles('component', 'UserManagement', 'header_menu');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+});

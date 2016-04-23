@@ -114,6 +114,10 @@ export default Post;
 `import React from 'react';
 
 class Post extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
@@ -135,6 +139,21 @@ export default Post;
     it("converts the entity name to snakecase for the file name", function() {
       generate('component', 'core:headerMenu');
       expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
+    });
+
+    it("generates a test file", function() {
+      generate('component', 'core:headerMenu');
+      let content = fs.readFileSync('./client/modules/core/components/tests/header_menu.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`const {describe, it} = global;
+import {expect} from 'chai';
+import {shallow} from 'enzyme';
+import HeaderMenu from '../header_menu';
+
+describe('core.components.header_menu', () => {
+  it('should do something');
+});
+`);
     });
   });
 
