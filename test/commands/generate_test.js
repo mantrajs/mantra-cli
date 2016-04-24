@@ -79,6 +79,12 @@ describe('core.actions.flagged_comments', () => {
 });
 `);
     });
+
+    it("generates a test file even though tests directory does not exist", function() {
+      fse.removeSync('./client/modules/core/actions/tests');
+      generate('action', 'core:flaggedComments');
+      expect(checkFileOrDirExists('./client/modules/core/actions/tests/flagged_comments.js')).to.equal(true);
+    });
   });
 
   describe("container", function() {
