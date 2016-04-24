@@ -1,3 +1,7 @@
+## 0.3.11 (April 24 2016)
+
+* Fix generator error for apps created with mantra-cli version prior to 0.3.10 ([#62](https://github.com/mantrajs/mantra-cli/issues/62))
+
 ## 0.3.10 (April 23 2016)
 
 * Generate tests for `action`, `component`, and `container`.
