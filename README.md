@@ -1,6 +1,6 @@
 # Mantra CLI
 
-[![Build Status](https://travis-ci.org/sungwoncho/mantra-cli.svg?branch=master)](https://travis-ci.org/sungwoncho/mantra-cli) [![Vym](https://img.shields.io/badge/Reviewing%20with-Vym-blue.svg)](https://vym.io)
+[![Build Status](https://travis-ci.org/sungwoncho/mantra-cli.svg?branch=master)](https://travis-ci.org/sungwoncho/mantra-cli)
 
 A command line interface for developing Meteor apps using [Mantra](https://github.com/kadirahq/mantra).
 
