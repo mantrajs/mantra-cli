@@ -1,3 +1,7 @@
+## 0.3.12 (May 29 2016)
+
+* Generate parent directory if missing. ([#66](https://github.com/mantrajs/mantra-cli/pull/66)) [@THPubs](https://github.com/THPubs)
+
 ## 0.3.11 (April 24 2016)
 
 * Fix generator error for apps created with mantra-cli version prior to 0.3.10 ([#62](https://github.com/mantrajs/mantra-cli/issues/62))
