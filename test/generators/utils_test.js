@@ -324,3 +324,21 @@ describe("getTestTemplateVaraibles", function() {
     });
   });
 });
+
+describe("compileTemplate", function() {
+  it("applies tabSpace", function() {
+    let content = `function() {
+  if (true) {
+    console.log('hello world');
+  }
+}
+`;
+    let result = utils.compileTemplate(content, {}, {tabSpace: 4});
+    expect(result).to.equal(`function() {
+    if (true) {
+        console.log('hello world');
+    }
+}
+`);
+  });
+});
