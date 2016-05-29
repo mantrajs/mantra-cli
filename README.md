@@ -113,6 +113,13 @@ You can provide all `types` supported by the `generate` command.
 
 ---------------------------------------
 
+## Upgrade Guide
+
+#### Upgrading to 0.4.x
+
+* From `0.4.0`, `.mantra` directory with configurations is provided to allow
+you configure the behavior of the CLI. Run `mantra restore config`.
+
 ## Contributor Guide
 
 * Clone this repository and run `npm install`.
