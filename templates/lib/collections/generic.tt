@@ -2,6 +2,9 @@ import {Mongo} from 'meteor/mongo';
 <% if (collection2) { %>
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 <% } %>
+<% if (astronomy) { %>
+import { Class } from 'meteor/jagi:astronomy';
+<% } %>
 
 const <%= collectionName %> = new Mongo.Collection('<%= collectionFileName %>');
 <% if (collection2) { %>
@@ -11,4 +14,14 @@ let schema = new SimpleSchema({
 
 <%= collectionName %>.attachSchema(schema);
 <% } %>
+
+<% if (astronomy) { %>
+const <%= className %> = Class.create({
+  name: '<%= className %>',
+  collection: <%= collectionName %>,
+  fields: {
+  }
+});
+<% } %>
+
 export default <%= collectionName %>;
