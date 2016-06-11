@@ -1,0 +1,14 @@
+import {Mongo} from 'meteor/mongo';
+import {Class} from 'meteor/jagi:astronomy';
+
+const <%= collectionName %> = new Mongo.Collection('<%= collectionFileName %>');
+
+const <%= className %> = Class.create({
+  name: '<%= className %>',
+  collection: <%= collectionName %>,
+  fields: {
+
+  }
+});
+
+export default <%= className %>;
