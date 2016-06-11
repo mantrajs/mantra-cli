@@ -232,6 +232,12 @@ describe('core.components.header_menu', () => {
       expect(content).to.match(/attachSchema/);
     });
 
+    it("users astronomy if schema option is specified so", function() {
+      generate('collection', 'posts', {schema: 'astronomy'});
+      let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
+      expect(content).to.match(/Class\.create/);
+    });
+
     it("does not use collection2 if no viable schema option is provided", function() {
       generate('collection', 'posts');
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
