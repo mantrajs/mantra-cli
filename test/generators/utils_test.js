@@ -168,8 +168,6 @@ describe("getTemplateVaraibles", function() {
     let expected = {
       collectionName: 'PullRequests',
       collectionFileName: 'pull_requests',
-      collection2: false,
-      astronomy: false
     };
 
     it("gets template variables - variation 1", function() {
@@ -192,12 +190,7 @@ describe("getTemplateVaraibles", function() {
 
     it("gets templates variables with collection2 option", function() {
       let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'collection2'});
-      let matched = _.isEqual(result, {
-        collectionName: 'PullRequests',
-        collectionFileName: 'pull_requests',
-        collection2: true,
-        astronomy: false
-      });
+      let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
@@ -206,8 +199,6 @@ describe("getTemplateVaraibles", function() {
       let matched = _.isEqual(result, {
         collectionName: 'PullRequests',
         collectionFileName: 'pull_requests',
-        collection2: false,
-        astronomy: true,
         className: 'PullRequest'
       });
       expect(matched).to.equal(true);
