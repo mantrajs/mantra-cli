@@ -168,7 +168,8 @@ describe("getTemplateVaraibles", function() {
     let expected = {
       collectionName: 'PullRequests',
       collectionFileName: 'pull_requests',
-      collection2: false
+      collection2: false,
+      astronomy: false
     };
 
     it("gets template variables - variation 1", function() {
@@ -191,7 +192,24 @@ describe("getTemplateVaraibles", function() {
 
     it("gets templates variables with collection2 option", function() {
       let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'collection2'});
-      let matched = _.isEqual(result, _.assign(expected, {collection2: true}));
+      let matched = _.isEqual(result, {
+        collectionName: 'PullRequests',
+        collectionFileName: 'pull_requests',
+        collection2: true,
+        astronomy: false
+      });
+      expect(matched).to.equal(true);
+    });
+
+    it("gets templates variables with astronomy option", function() {
+      let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'astronomy'});
+      let matched = _.isEqual(result, {
+        collectionName: 'PullRequests',
+        collectionFileName: 'pull_requests',
+        collection2: false,
+        astronomy: true,
+        className: 'PullRequest'
+      });
       expect(matched).to.equal(true);
     });
   });
@@ -322,5 +340,12 @@ describe("getTestTemplateVaraibles", function() {
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
+  });
+});
+
+describe("getTemplatePath", function() {
+  it("gets template path for collection - collection2", function() {
+    let result = utils.getTemplatePath('collection', {schema: 'collection2'});
+    expect(result).to.match(/generic_collection2.tt/);
   });
 });
