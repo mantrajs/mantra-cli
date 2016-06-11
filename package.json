@@ -34,7 +34,8 @@
     "lodash": "^4.5.0",
     "match-bracket": "^1.0.0",
     "shelljs": "^0.6.0",
-    "update-notifier": "^0.6.0"
+    "update-notifier": "^0.6.0",
+    "i":"^0.3.5"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
