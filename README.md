@@ -73,7 +73,7 @@ Generates a `container` and its corresponding `component`.
 * `collection`
 
 Use `--schema` option (alias `-s`) to specify the schema solution to use for
-your Mongo collections. Currently, you can specify `collection2`.
+your Mongo collections. Currently, you can specify `collection2`, and `astronomy`.
 
     mantra g collection books -s collection2
 
