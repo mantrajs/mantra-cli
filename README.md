@@ -124,6 +124,10 @@ customize:
 You may customize Mantra-CLI by editing `mantra_cli.yaml` on the root directory
 of your project. Please open an issue with suggestions for more customization.
 
+The configuration is designed to be similar to [mantra-atom-package]
+(https://github.com/mantrajs/mantrajs-atom-package). The long term goal is to
+make configuration interchangeable.
+
 ### tab size
 
 * The number of spaces for indentation. Default: 2.
