@@ -1,3 +1,7 @@
+## 0.3.13 (June 12 2016)
+
+* Astronomy support ([@PolGuixe](https://github.com/PolGuixe))
+
 ## 0.3.12 (May 29 2016)
 
 * Generate parent directory if missing. ([#66](https://github.com/mantrajs/mantra-cli/pull/66)) [@THPubs](https://github.com/THPubs)
