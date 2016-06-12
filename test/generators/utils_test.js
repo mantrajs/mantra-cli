@@ -358,3 +358,25 @@ describe("compileTemplate", function() {
 `);
   });
 });
+
+describe("readTemplateContent", function() {
+  it("returns the default content if no config is provided", function() {
+    let options = {};
+    let configs = {};
+    let defaultTemplatePath = path.resolve(__dirname, '../../templates/client/modules/core/actions/generic.tt');
+
+    let result = utils.readTemplateContent('action', options, configs);
+    let expected = fse.readFileSync(defaultTemplatePath);
+
+    expect(result.equals(expected)).to.equal(true);
+  });
+
+  it("returns the custom content if config is provided", function() {
+    let options = {};
+    let customContent = 'hello world';
+    let configs = {templates: [{name: 'action', text: customContent}]};
+    let result = utils.readTemplateContent('action', options, configs);
+
+    expect(result).to.equal(customContent);
+  });
+});
