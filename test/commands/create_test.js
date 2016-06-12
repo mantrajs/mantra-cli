@@ -41,6 +41,6 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/.eslintrc')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.babelrc')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.scripts/mocha_boot.js')).to.equal(true);
-    expect(checkFileOrDirExists('./blog/.mantra/config.json')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/mantra_cli.yaml')).to.equal(true);
   });
 });

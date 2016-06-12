@@ -342,14 +342,14 @@ describe("getTemplatePath", function() {
 });
 
 describe("compileTemplate", function() {
-  it("applies tabSpace", function() {
+  it("applies tabSize", function() {
     let content = `function() {
   if (true) {
     console.log('hello world');
   }
 }
 `;
-    let result = utils.compileTemplate(content, {}, {tabSpace: 4});
+    let result = utils.compileTemplate(content, {}, {tabSize: 4});
     expect(result).to.equal(`function() {
     if (true) {
         console.log('hello world');
