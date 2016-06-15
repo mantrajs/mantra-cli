@@ -104,6 +104,14 @@ describe('core.actions.flagged_comments', () => {
       expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
     });
 
+    it("does not generate any files if entity name is empty", function() {
+      generate('container', 'core::header');
+      expect(checkFileOrDirExists('./client/modules/core/containers/.js')).to.equal(false);
+      expect(checkFileOrDirExists('./client/modules/core/components/.js')).to.equal(false);
+      expect(checkFileOrDirExists('./client/modules/core/containers/header.js')).to.equal(false);
+      expect(checkFileOrDirExists('./client/modules/core/components/header.jsx')).to.equal(false);
+    })
+
     it("converts the entity name to snakecase for the file name", function() {
       generate('container', 'core:headerMenu');
       expect(checkFileOrDirExists('./client/modules/core/containers/header_menu.js')).to.equal(true);
