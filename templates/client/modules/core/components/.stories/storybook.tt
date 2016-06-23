@@ -1,0 +1,11 @@
+import React from 'react';
+import { storiesOf, action } from '@kadira/storybook';
+import { setComposerStub } from 'react-komposer';
+import <%= componentName %> from '../<%= componentFileName %>.jsx';
+
+storiesOf('moduleName.<%= componentName %>', module)
+  .add('default view', () => {
+    return (
+      <<%= componentName %> />
+    );
+  })

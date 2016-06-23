@@ -112,6 +112,11 @@ describe("getOutputPath", function() {
     let result = utils.getOutputPath('component', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/components/user_list.jsx');
   });
+
+  it("returns a correct output path for a storybook", function() {
+    let result = utils.getOutputPath('storybook', 'user_list', 'core');
+    expect(result).to.equal('./client/modules/core/components/.stories/user_list.jsx');
+  });
 });
 
 describe("getTemplateVaraibles", function() {
@@ -134,6 +139,31 @@ describe("getTemplateVaraibles", function() {
 
     it("gets template variables - variation 3", function() {
       let result = utils.getTemplateVaraibles('component', 'UserList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for storybook", function() {
+    let expected = {
+      componentName: 'UserList',
+      componentFileName: 'user_list'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'userList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'user_list');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'UserList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
