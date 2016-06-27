@@ -147,24 +147,25 @@ describe("getTemplateVaraibles", function() {
 
   describe("for storybook", function() {
     let expected = {
+      moduleName: "core",
       componentName: 'UserList',
       componentFileName: 'user_list'
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('storybook', 'userList');
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'userList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('storybook', 'user_list');
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'user_list');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('storybook', 'UserList');
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'UserList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
