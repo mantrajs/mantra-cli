@@ -88,6 +88,8 @@ export default {
     it("removes the component file", function() {
       let componentPath = './client/modules/core/components/posts.jsx';
       fse.outputFileSync(componentPath, 'dummy content');
+      let storyIndexFile = './client/modules/core/components/.stories/index.js';
+      fse.outputFileSync(storyIndexFile, 'dummy content');
       destroy('component', 'core:posts');
       expect((checkFileOrDirExists(componentPath))).to.equal(false);
     });
@@ -95,6 +97,8 @@ export default {
     it("removes the test file", function() {
       let testPath = './client/modules/core/components/tests/post_list.js';
       fse.outputFileSync(testPath, 'dummy content');
+      let storyIndexFile = './client/modules/core/components/.stories/index.js';
+      fse.outputFileSync(storyIndexFile, 'dummy content');
       destroy('component', 'core:postList');
       expect((checkFileOrDirExists(testPath))).to.equal(false);
     });

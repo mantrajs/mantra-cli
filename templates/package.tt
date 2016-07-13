@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "<%= appName %>",
   "scripts": {
-    "test": "mocha .scripts/mocha_boot.js client/**/tests/**/*.js --compilers js:babel-core/register"
+    "test": "mocha .scripts/mocha_boot.js client/**/tests/**/*.js --compilers js:babel-core/register",
+    "storybook": "start-storybook -p 9001"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "react-simple-di": "^1.0.1"
   },
   "devDependencies": {
+    "@kadira/storybook": "^1.x.x",
     "enzyme": "^2.2.0",
     "jsdom": "^8.0.4",
     "eslint": "2.7.x",
