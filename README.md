@@ -66,6 +66,8 @@ By default, a stateless component is generated. By using `--use-class` option
 
     mantra g component core:user_list -c
 
+Mantra-cli also generates a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. It's curently not possible to disable this feature (PR welcome).
+
 * `container`
 
 Generates a `container` and its corresponding `component`.

@@ -115,7 +115,7 @@ describe("getOutputPath", function() {
 
   it("returns a correct output path for a storybook", function() {
     let result = utils.getOutputPath('storybook', 'user_list', 'core');
-    expect(result).to.equal('./client/modules/core/components/.stories/user_list.jsx');
+    expect(result).to.equal('./client/modules/core/components/.stories/user_list.js');
   });
 });
 
