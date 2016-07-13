@@ -112,28 +112,60 @@ describe("getOutputPath", function() {
     let result = utils.getOutputPath('component', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/components/user_list.jsx');
   });
+
+  it("returns a correct output path for a storybook", function() {
+    let result = utils.getOutputPath('storybook', 'user_list', 'core');
+    expect(result).to.equal('./client/modules/core/components/.stories/user_list.jsx');
+  });
 });
 
 describe("getTemplateVaraibles", function() {
   describe("for components", function() {
     let expected = {
-      componentName: 'UserList'
+      componentName: 'UserList',
+      moduleName: 'core'
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('component', 'userList');
+      let result = utils.getTemplateVaraibles('component', 'core', 'userList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('component', 'user_list');
+      let result = utils.getTemplateVaraibles('component', 'core', 'user_list');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('component', 'UserList');
+      let result = utils.getTemplateVaraibles('component', 'core', 'UserList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+  });
+
+  describe("for storybook", function() {
+    let expected = {
+      moduleName: "core",
+      componentName: 'UserList',
+      componentFileName: 'user_list'
+    };
+
+    it("gets template variables - variation 1", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'userList');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 2", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'user_list');
+      let matched = _.isEqual(result, expected);
+      expect(matched).to.equal(true);
+    });
+
+    it("gets template variables - variation 3", function() {
+      let result = utils.getTemplateVaraibles('storybook', 'core', 'UserList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
@@ -142,23 +174,24 @@ describe("getTemplateVaraibles", function() {
   describe("for containers", function() {
     let expected = {
       componentName: 'UserList',
-      componentFileName: 'user_list'
+      componentFileName: 'user_list',
+      moduleName: 'core'
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('container', 'userList');
+      let result = utils.getTemplateVaraibles('container', 'core', 'userList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('container', 'user_list');
+      let result = utils.getTemplateVaraibles('container', 'core', 'user_list');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('container', 'UserList');
+      let result = utils.getTemplateVaraibles('container', 'core', 'UserList');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
@@ -171,31 +204,31 @@ describe("getTemplateVaraibles", function() {
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('collection', 'pullRequests');
+      let result = utils.getTemplateVaraibles('collection', null, 'pullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('collection', 'pull_requests');
+      let result = utils.getTemplateVaraibles('collection', null, 'pull_requests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('collection', 'PullRequests');
+      let result = utils.getTemplateVaraibles('collection', null, 'PullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets templates variables with collection2 option", function() {
-      let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'collection2'});
+      let result = utils.getTemplateVaraibles('collection', null, 'PullRequests', {schema: 'collection2'});
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets templates variables with astronomy option", function() {
-      let result = utils.getTemplateVaraibles('collection', 'PullRequests', {schema: 'astronomy'});
+      let result = utils.getTemplateVaraibles('collection', null, 'PullRequests', {schema: 'astronomy'});
       let matched = _.isEqual(result, {
         collectionName: 'PullRequests',
         collectionFileName: 'pull_requests',
@@ -212,19 +245,19 @@ describe("getTemplateVaraibles", function() {
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('method', 'pullRequests');
+      let result = utils.getTemplateVaraibles('method', null, 'pullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('method', 'pull_requests');
+      let result = utils.getTemplateVaraibles('method', null, 'pull_requests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('method', 'PullRequests');
+      let result = utils.getTemplateVaraibles('method', null, 'PullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
@@ -237,19 +270,19 @@ describe("getTemplateVaraibles", function() {
     };
 
     it("gets template variables - variation 1", function() {
-      let result = utils.getTemplateVaraibles('publication', 'pullRequests');
+      let result = utils.getTemplateVaraibles('publication', null, 'pullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 2", function() {
-      let result = utils.getTemplateVaraibles('publication', 'pull_requests');
+      let result = utils.getTemplateVaraibles('publication', null, 'pull_requests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
 
     it("gets template variables - variation 3", function() {
-      let result = utils.getTemplateVaraibles('publication', 'PullRequests');
+      let result = utils.getTemplateVaraibles('publication', null, 'PullRequests');
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
