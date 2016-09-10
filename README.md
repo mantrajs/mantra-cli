@@ -212,8 +212,9 @@ e.g.
 
 #### Upgrading to 0.4.x
 
-* From `0.4.0`, `.mantra` directory with configurations is provided to allow
-you configure the behavior of the CLI. Run `mantra restore config`.
+* From `0.4.0`, `mantra-cli.yml` was added. If you are upgrading from `0.3.x`,
+simply create `mantra-cli.yml` file in your project root and start customizing
+following the documentation above.
 
 ## Contributor Guide
 
@@ -221,7 +222,6 @@ you configure the behavior of the CLI. Run `mantra restore config`.
 * Write your code under `/lib`.
 * `npm run-script compile` compiles your ES2015 code in `/lib` into `/dist`.
 * `npm test` compiles the code and runs the tests.
-
 
 ## License
 

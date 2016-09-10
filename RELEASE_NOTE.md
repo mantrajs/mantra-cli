@@ -1,3 +1,11 @@
+## 0.4.0 (September 10 2016)
+
+* Customizable templates for all entities
+* Customizable templates for tests ([@macrozone](https://github.com/macrozone))
+* Storybook integration ([@macrozone](https://github.com/macrozone))
+* Stop generating files if file name is empty ([@fermuch](https://github.com/fermuch))
+* Stop destroying files if file name is empty ([@macrozone](https://github.com/macrozone))
+
 ## 0.3.13 (June 12 2016)
 
 * Astronomy support ([@PolGuixe](https://github.com/PolGuixe))
