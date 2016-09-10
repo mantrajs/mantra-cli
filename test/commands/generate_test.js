@@ -163,7 +163,7 @@ describe('core.components.comment_list', () => {
 
   describe("component", function() {
     it("generates a stateless component by default", function() {
-      generate('component', 'core:post');
+      generate('component', 'core:post', {}, {tabSize: 2});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
@@ -179,7 +179,7 @@ export default Post;
     });
 
     it("generates a class extending React.Component if useClass option is provided", function() {
-      generate('component', 'core:post', {useClass: true});
+      generate('component', 'core:post', {useClass: true}, {tabSize: 2});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
@@ -240,7 +240,7 @@ describe('core.components.header_menu', () => {
       expect(content).to.match(/attachSchema/);
     });
 
-    it("users astronomy if schema option is specified so", function() {
+    it("uses astronomy if schema option is specified so", function() {
       generate('collection', 'posts', {schema: 'astronomy'});
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
       expect(content).to.match(/Class\.create/);
@@ -250,6 +250,21 @@ describe('core.components.header_menu', () => {
       generate('collection', 'posts');
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
       expect(content).to.not.match(/attachSchema/);
+    });
+
+    it("uses custom template if configured", function() {
+      let config = {
+        tabSize: 2,
+        templates: [
+          {
+            name: 'collection',
+            text: 'custom template for <%= collectionName %>'
+          }
+        ]
+      };
+      generate('collection', 'posts', {schema: 'collection2'}, config);
+      let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
+      expect(content).to.not.match(/custom template for Post/);
     });
 
     it("updates an empty lib/collections/index.js", function() {
