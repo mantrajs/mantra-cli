@@ -1,3 +1,7 @@
+## 0.4.1 (September 13 2016)
+
+* Fix an import path ([#95](https://github.com/mantrajs/mantra-cli/pull/95)) [@Cyval](https://github.com/Cyval)
+
 ## 0.4.0 (September 10 2016)
 
 * Customizable templates for all entities
