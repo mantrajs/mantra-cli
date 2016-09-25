@@ -159,6 +159,16 @@ describe('core.components.comment_list', () => {
 });
 `);
     });
+
+    it("does not generate storybook if not configured", function() {
+      generate('container', 'core:commentList', {}, {});
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(false);
+    });
+
+    it("generates storybook if configured", function() {
+      generate('container', 'core:commentList', {}, { storybook: true });
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(true);
+    });
   });
 
   describe("component", function() {
@@ -226,6 +236,16 @@ describe('core.components.header_menu', () => {
 });
 `);
     });
+
+    it("does not generate storybook if not configured", function() {
+      generate('component', 'core:commentList', {}, {});
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(false);
+    });
+
+    it("generates storybook if configured", function() {
+      generate('component', 'core:commentList', {}, { storybook: true });
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(true);
+    });
   });
 
   describe("collection", function() {
@@ -264,7 +284,7 @@ describe('core.components.header_menu', () => {
       };
       generate('collection', 'posts', {schema: 'collection2'}, config);
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
-      expect(content).to.not.match(/custom template for Post/);
+      expect(content).to.not.match(/custom template for posts/);
     });
 
     it("updates an empty lib/collections/index.js", function() {
