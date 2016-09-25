@@ -49,13 +49,22 @@ describe("create command", function() {
   it("creates a skeleton mantra app", function() {
     create('blog');
     checkCommonFiles();
+
+    expect(checkFileOrDirExists('./blog/.storybook')).to.equal(false);
+    expect(checkFileOrDirExists('./blog/.storybook/config.js')).to.equal(false);
+    expect(checkFileOrDirExists('./blog/.storybook/webpack.config.js')).to.equal(false);
+    expect(checkFileOrDirExists('./blog/client/modules/core/components/.stories/')).to.equal(false);
+    expect(checkFileOrDirExists('./blog/client/modules/core/components/.stories/index.js')).to.equal(false);
   });
 
   it("creates storybook if option is specified", function() {
     create('blog', { storybook: true });
     checkCommonFiles();
+
     expect(checkFileOrDirExists('./blog/.storybook')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.storybook/config.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.storybook/webpack.config.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/modules/core/components/.stories/')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/modules/core/components/.stories/index.js')).to.equal(true);
   });
 });
