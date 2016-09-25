@@ -47,6 +47,10 @@ It performs the following tasks:
 
 Log the output of the scripts in the console, rather than silencing them.
 
+* `--storybook, -s`
+
+Create storybook files, and save the configuration to the generated `mantra_cli.yaml`.
+
 ---------------------------------------
 
 ### mantra generate [type] [name]
