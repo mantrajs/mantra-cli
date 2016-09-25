@@ -1,3 +1,7 @@
+## 0.4.2 (September 25 2016)
+
+* Make Storybook optional ([#98](https://github.com/mantrajs/mantra-cli/pull/98))
+
 ## 0.4.1 (September 13 2016)
 
 * Fix an import path ([#95](https://github.com/mantrajs/mantra-cli/pull/95)) [@Cyval](https://github.com/Cyval)
