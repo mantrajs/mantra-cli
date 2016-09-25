@@ -3,15 +3,14 @@ import fse from 'fs-extra';
 import _ from 'lodash';
 import yaml from 'js-yaml';
 
-import {readConfig} from '../dist/utils';
+import {readConfig, DEFAULT_CONFIG} from '../dist/utils';
 import {setupTestApp, teardownTestApp, checkFileOrDirExists} from './test_helpers';
 
 describe("readConfig", function() {
   it("reads default configs if there is no config file", function() {
     let config = readConfig();
-    let defaultConfig = yaml.safeLoad(fse.readFileSync('../templates/mantra_cli.yaml', {encoding: 'utf-8'}));
 
-    expect(_.isEqual(config, defaultConfig)).to.equal(true);
+    expect(_.isEqual(config, DEFAULT_CONFIG)).to.equal(true);
   });
 
   describe("when user config is provided", function() {

@@ -1,6 +1,6 @@
 # Mantra CLI
 
-[![Build Status](https://travis-ci.org/sungwoncho/mantra-cli.svg?branch=master)](https://travis-ci.org/sungwoncho/mantra-cli)
+[![Build Status](https://travis-ci.org/mantrajs/mantra-cli.svg?branch=master)](https://travis-ci.org/mantrajs/mantra-cli)
 
 A command line interface for developing Meteor apps using [Mantra](https://github.com/kadirahq/mantra).
 
@@ -46,6 +46,10 @@ It performs the following tasks:
 * `--verbose, -v`
 
 Log the output of the scripts in the console, rather than silencing them.
+
+* `--storybook, -s`
+
+Create storybook files, and save the configuration to the generated `mantra_cli.yaml`.
 
 ---------------------------------------
 
