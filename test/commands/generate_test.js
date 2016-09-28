@@ -55,6 +55,31 @@ export default {
 `);
     });
 
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from \'./posts\';
+import comments from \'./comments\';
+
+export default {
+  posts,
+  comments
+};
+`;
+      fs.writeFileSync('./client/modules/core/actions/index.js', originalContent);
+
+      generate('action', 'core:comments');
+      let indexContent = fs.readFileSync('./client/modules/core/actions/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import comments from \'./comments\';
+
+export default {
+  posts,
+  comments
+};
+`);
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('action', 'core:group.post');
       expect(checkFileOrDirExists('./client/modules/core/actions/group.post.js')).to.equal(false);
@@ -323,6 +348,32 @@ export {
 `);
     });
 
+    it('does not update index.js if file already exists', function() {
+      let originalContent =
+`import Posts from \'./posts\';
+import PostCategories from \'./post_categories\';
+
+export {
+  Posts,
+  PostCategories
+};
+`;
+      fs.writeFileSync('./lib/collections/index.js', originalContent);
+
+      generate('collection', 'postCategories');
+      let indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import Posts from \'./posts\';
+import PostCategories from \'./post_categories\';
+
+export {
+  Posts,
+  PostCategories
+};
+`);
+
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('collection', 'user.info');
       expect(checkFileOrDirExists('./lib/collections/user.info.js')).to.equal(false);
@@ -375,6 +426,32 @@ export default function () {
 `);
     });
 
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`;
+      fs.writeFileSync('./server/methods/index.js', originalContent);
+
+      generate('method', 'users');
+      let indexContent = fs.readFileSync('./server/methods/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
+
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('method', 'group.note');
       expect(checkFileOrDirExists('./server/methods/group.note.js')).to.equal(false);
@@ -425,6 +502,32 @@ export default function () {
   users();
 }
 `);
+    });
+
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from './posts';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`;
+      fs.writeFileSync('./server/publications/index.js', originalContent);
+
+      generate('publication', 'users');
+      let indexContent = fs.readFileSync('./server/publications/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
+
     });
 
     it("does not generate if entity name contains a dot", function() {
