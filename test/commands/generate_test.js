@@ -66,6 +66,7 @@ export default {
 };
 `;
       fs.writeFileSync('./client/modules/core/actions/index.js', originalContent);
+      fs.writeFileSync('./client/modules/core/actions/comments.js', 'dummy content');
 
       generate('action', 'core:comments');
       let indexContent = fs.readFileSync('./client/modules/core/actions/index.js', {encoding: 'utf-8'});
@@ -359,6 +360,7 @@ export {
 };
 `;
       fs.writeFileSync('./lib/collections/index.js', originalContent);
+      fs.writeFileSync('./lib/collections/post_categories.js', 'dummy content');
 
       generate('collection', 'postCategories');
       let indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
@@ -437,6 +439,7 @@ export default function () {
 }
 `;
       fs.writeFileSync('./server/methods/index.js', originalContent);
+      fs.writeFileSync('./server/methods/users.js', 'dummy content');
 
       generate('method', 'users');
       let indexContent = fs.readFileSync('./server/methods/index.js', {encoding: 'utf-8'});
@@ -515,6 +518,7 @@ export default function () {
 }
 `;
       fs.writeFileSync('./server/publications/index.js', originalContent);
+      fs.writeFileSync('./server/publications/users.js', 'dummy content');
 
       generate('publication', 'users');
       let indexContent = fs.readFileSync('./server/publications/index.js', {encoding: 'utf-8'});
