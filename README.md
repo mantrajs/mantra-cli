@@ -208,7 +208,13 @@ Variables needed for each templates are:
 
 e.g.
 
+### storybooks
 
+Generate stories for Kadira Storybooks with generation of a new component.
+
+```yaml
+storybook: true
+```
 
 ---------------------------------------
 
