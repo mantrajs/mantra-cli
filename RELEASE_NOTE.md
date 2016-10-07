@@ -1,3 +1,7 @@
+## 0.4.3  (October  8 2016)
+
+* Stop updating index.js if a file already exists ([#99](https://github.com/mantrajs/mantra-cli/pull/99)) [@thancock20](https://github.com/thancock20)
+
 ## 0.4.2 (September 25 2016)
 
 * Make Storybook optional ([#98](https://github.com/mantrajs/mantra-cli/pull/98))
