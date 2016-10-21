@@ -1,3 +1,7 @@
+## 0.4.4 (October 21 2016)
+
+* Avoid creating a new project when already inside a Meteor project ([#103](https://github.com/mantrajs/mantra-cli/pull/103)) [@thancock20](https://github.com/thancock20)
+
 ## 0.4.3  (October  8 2016)
 
 * Stop updating index.js if a file already exists ([#99](https://github.com/mantrajs/mantra-cli/pull/99)) [@thancock20](https://github.com/thancock20)
