@@ -1,3 +1,7 @@
+## 0.4.5 (November 30 2016)
+
+* Add missing dependency ([#108](https://github.com/mantrajs/mantra-cli/pull/108)) [@StorytellerCZ](https://github.com/StorytellerCZ)
+
 ## 0.4.4 (October 21 2016)
 
 * Avoid creating a new project when already inside a Meteor project ([#103](https://github.com/mantrajs/mantra-cli/pull/103)) [@thancock20](https://github.com/thancock20)
