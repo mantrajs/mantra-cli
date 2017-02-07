@@ -1,6 +1,6 @@
 # Mantra CLI
 
-[![Build Status](https://travis-ci.org/sungwoncho/mantra-cli.svg?branch=master)](https://travis-ci.org/sungwoncho/mantra-cli)
+[![Build Status](https://travis-ci.org/mantrajs/mantra-cli.svg?branch=master)](https://travis-ci.org/mantrajs/mantra-cli)
 
 A command line interface for developing Meteor apps using [Mantra](https://github.com/kadirahq/mantra).
 
@@ -47,6 +47,10 @@ It performs the following tasks:
 
 Log the output of the scripts in the console, rather than silencing them.
 
+* `--storybook, -s`
+
+Create storybook files, and save the configuration to the generated `mantra_cli.yaml`.
+
 ---------------------------------------
 
 ### mantra generate [type] [name]
@@ -66,7 +70,8 @@ By default, a stateless component is generated. By using `--use-class` option
 
     mantra g component core:user_list -c
 
-Mantra-cli also generates a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. It's curently not possible to disable this feature (PR welcome).
+Mantra-cli can also generate a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. See the [configuration section](https://github.com/mantrajs/mantra-cli#storybooks) for more info.
+
 
 * `container`
 
@@ -204,7 +209,13 @@ Variables needed for each templates are:
 
 e.g.
 
+### storybooks
 
+Generate stories for Kadira Storybooks with generation of a new component.
+
+```yaml
+storybook: true
+```
 
 ---------------------------------------
 
@@ -212,8 +223,9 @@ e.g.
 
 #### Upgrading to 0.4.x
 
-* From `0.4.0`, `.mantra` directory with configurations is provided to allow
-you configure the behavior of the CLI. Run `mantra restore config`.
+* From `0.4.0`, `mantra-cli.yml` was added. If you are upgrading from `0.3.x`,
+simply create `mantra-cli.yml` file in your project root and start customizing
+following the documentation above.
 
 ## Contributor Guide
 
@@ -221,7 +233,6 @@ you configure the behavior of the CLI. Run `mantra restore config`.
 * Write your code under `/lib`.
 * `npm run-script compile` compiles your ES2015 code in `/lib` into `/dist`.
 * `npm test` compiles the code and runs the tests.
-
 
 ## License
 

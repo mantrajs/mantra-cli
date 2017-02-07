@@ -4,7 +4,7 @@ const Home = () => (
   <div>
     <h1>Mantra</h1>
     <p>
-      Welcome to Mantra 0.2.0.
+      Welcome to Mantra 0.4.2.
     </p>
     <ul>
       <li>

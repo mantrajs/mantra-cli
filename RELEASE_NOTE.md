@@ -1,3 +1,31 @@
+## 0.4.5 (November 30 2016)
+
+* Add missing dependency ([#108](https://github.com/mantrajs/mantra-cli/pull/108)) [@StorytellerCZ](https://github.com/StorytellerCZ)
+
+## 0.4.4 (October 21 2016)
+
+* Avoid creating a new project when already inside a Meteor project ([#103](https://github.com/mantrajs/mantra-cli/pull/103)) [@thancock20](https://github.com/thancock20)
+
+## 0.4.3  (October  8 2016)
+
+* Stop updating index.js if a file already exists ([#99](https://github.com/mantrajs/mantra-cli/pull/99)) [@thancock20](https://github.com/thancock20)
+
+## 0.4.2 (September 25 2016)
+
+* Make Storybook optional ([#98](https://github.com/mantrajs/mantra-cli/pull/98))
+
+## 0.4.1 (September 13 2016)
+
+* Fix an import path ([#95](https://github.com/mantrajs/mantra-cli/pull/95)) [@Cyval](https://github.com/Cyval)
+
+## 0.4.0 (September 10 2016)
+
+* Customizable templates for all entities
+* Customizable templates for tests ([@macrozone](https://github.com/macrozone))
+* Storybook integration ([@macrozone](https://github.com/macrozone))
+* Stop generating files if file name is empty ([@fermuch](https://github.com/fermuch))
+* Stop destroying files if file name is empty ([@macrozone](https://github.com/macrozone))
+
 ## 0.3.13 (June 12 2016)
 
 * Astronomy support ([@PolGuixe](https://github.com/PolGuixe))

@@ -55,6 +55,32 @@ export default {
 `);
     });
 
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from \'./posts\';
+import comments from \'./comments\';
+
+export default {
+  posts,
+  comments
+};
+`;
+      fs.writeFileSync('./client/modules/core/actions/index.js', originalContent);
+      fs.writeFileSync('./client/modules/core/actions/comments.js', 'dummy content');
+
+      generate('action', 'core:comments');
+      let indexContent = fs.readFileSync('./client/modules/core/actions/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import comments from \'./comments\';
+
+export default {
+  posts,
+  comments
+};
+`);
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('action', 'core:group.post');
       expect(checkFileOrDirExists('./client/modules/core/actions/group.post.js')).to.equal(false);
@@ -159,11 +185,21 @@ describe('core.components.comment_list', () => {
 });
 `);
     });
+
+    it("does not generate storybook if not configured", function() {
+      generate('container', 'core:commentList', {}, {});
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(false);
+    });
+
+    it("generates storybook if configured", function() {
+      generate('container', 'core:commentList', {}, { storybook: true });
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(true);
+    });
   });
 
   describe("component", function() {
     it("generates a stateless component by default", function() {
-      generate('component', 'core:post');
+      generate('component', 'core:post', {}, {tabSize: 2});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
@@ -179,7 +215,7 @@ export default Post;
     });
 
     it("generates a class extending React.Component if useClass option is provided", function() {
-      generate('component', 'core:post', {useClass: true});
+      generate('component', 'core:post', {useClass: true}, {tabSize: 2});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
@@ -226,6 +262,16 @@ describe('core.components.header_menu', () => {
 });
 `);
     });
+
+    it("does not generate storybook if not configured", function() {
+      generate('component', 'core:commentList', {}, {});
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(false);
+    });
+
+    it("generates storybook if configured", function() {
+      generate('component', 'core:commentList', {}, { storybook: true });
+      expect(checkFileOrDirExists('./client/modules/core/components/.stories/comment_list.js')).to.equal(true);
+    });
   });
 
   describe("collection", function() {
@@ -240,7 +286,7 @@ describe('core.components.header_menu', () => {
       expect(content).to.match(/attachSchema/);
     });
 
-    it("users astronomy if schema option is specified so", function() {
+    it("uses astronomy if schema option is specified so", function() {
       generate('collection', 'posts', {schema: 'astronomy'});
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
       expect(content).to.match(/Class\.create/);
@@ -250,6 +296,21 @@ describe('core.components.header_menu', () => {
       generate('collection', 'posts');
       let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
       expect(content).to.not.match(/attachSchema/);
+    });
+
+    it("uses custom template if configured", function() {
+      let config = {
+        tabSize: 2,
+        templates: [
+          {
+            name: 'collection',
+            text: 'custom template for <%= collectionName %>'
+          }
+        ]
+      };
+      generate('collection', 'posts', {schema: 'collection2'}, config);
+      let content = fs.readFileSync('./lib/collections/posts.js', {encoding: 'utf-8'});
+      expect(content).to.not.match(/custom template for posts/);
     });
 
     it("updates an empty lib/collections/index.js", function() {
@@ -286,6 +347,33 @@ export {
   PostCategories
 };
 `);
+    });
+
+    it('does not update index.js if file already exists', function() {
+      let originalContent =
+`import Posts from \'./posts\';
+import PostCategories from \'./post_categories\';
+
+export {
+  Posts,
+  PostCategories
+};
+`;
+      fs.writeFileSync('./lib/collections/index.js', originalContent);
+      fs.writeFileSync('./lib/collections/post_categories.js', 'dummy content');
+
+      generate('collection', 'postCategories');
+      let indexContent = fs.readFileSync('./lib/collections/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import Posts from \'./posts\';
+import PostCategories from \'./post_categories\';
+
+export {
+  Posts,
+  PostCategories
+};
+`);
+
     });
 
     it("does not generate if entity name contains a dot", function() {
@@ -340,6 +428,33 @@ export default function () {
 `);
     });
 
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`;
+      fs.writeFileSync('./server/methods/index.js', originalContent);
+      fs.writeFileSync('./server/methods/users.js', 'dummy content');
+
+      generate('method', 'users');
+      let indexContent = fs.readFileSync('./server/methods/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
+
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('method', 'group.note');
       expect(checkFileOrDirExists('./server/methods/group.note.js')).to.equal(false);
@@ -390,6 +505,33 @@ export default function () {
   users();
 }
 `);
+    });
+
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from './posts';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`;
+      fs.writeFileSync('./server/publications/index.js', originalContent);
+      fs.writeFileSync('./server/publications/users.js', 'dummy content');
+
+      generate('publication', 'users');
+      let indexContent = fs.readFileSync('./server/publications/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function () {
+  posts();
+  users();
+}
+`);
+
     });
 
     it("does not generate if entity name contains a dot", function() {
