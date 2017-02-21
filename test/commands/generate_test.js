@@ -136,16 +136,19 @@ describe('core.actions.flagged_comments', () => {
       expect(checkFileOrDirExists('./client/modules/core/components/.js')).to.equal(false);
       expect(checkFileOrDirExists('./client/modules/core/containers/header.js')).to.equal(false);
       expect(checkFileOrDirExists('./client/modules/core/components/header.jsx')).to.equal(false);
-    })
+    });
 
     it("converts the entity name to snakecase for the file name", function() {
       generate('container', 'core:headerMenu');
       expect(checkFileOrDirExists('./client/modules/core/containers/header_menu.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
-
-    it("generates a test file for the container", function() {
-      generate('container', 'core:commentList');
+    it("does not generates a container test file if generateContainerTests is false", function() {
+      generate('container', 'core:commentList', {}, { generateContainerTests: false });
+      expect(checkFileOrDirExists('./client/modules/core/containers/tests/comment_list.js')).to.equal(false);
+    });
+    it("generates a test file for the container if generateContainerTests is true", function() {
+      generate('container', 'core:commentList', {}, { generateContainerTests: true });
       let content = fs.readFileSync('./client/modules/core/containers/tests/comment_list.js', {encoding: 'utf-8'});
       expect(content).to.equal(
 `const {describe, it} = global;
@@ -171,8 +174,13 @@ describe('core.containers.comment_list', () => {
 `);
     });
 
-    it("generates a test file for the component", function() {
-      generate('container', 'core:commentList');
+    it("does not generate a test file for the component if generateComponentTests is false", function() {
+      generate('container', 'core:commentList', {}, { generateComponentTests: false });
+      expect(checkFileOrDirExists('./client/modules/core/components/tests/comment_list.js')).to.equal(false);
+    });
+
+    it("generates a test file for the component if generateComponentTests is true", function() {
+      generate('container', 'core:commentList', {}, { generateComponentTests: true });
       let content = fs.readFileSync('./client/modules/core/components/tests/comment_list.js', {encoding: 'utf-8'});
       expect(content).to.equal(
 `const {describe, it} = global;
@@ -248,8 +256,13 @@ export default Post;
       expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
 
-    it("generates a test file", function() {
-      generate('component', 'core:headerMenu');
+    it("does not generate a test file if generateComponentTests is false", function() {
+      generate('component', 'core:headerMenu', {}, { generateComponentTests: false });
+      expect(checkFileOrDirExists('./client/modules/core/components/tests/header_menu.js')).to.equal(false);
+    });
+
+    it("generates a test file if generateComponentTests is true", function() {
+      generate('component', 'core:headerMenu', {}, { generateComponentTests: true });
       let content = fs.readFileSync('./client/modules/core/components/tests/header_menu.js', {encoding: 'utf-8'});
       expect(content).to.equal(
 `const {describe, it} = global;
