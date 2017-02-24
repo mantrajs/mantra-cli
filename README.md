@@ -127,6 +127,8 @@ customize:
 
 * tab size
 * templates
+* generateComponentTests (true)
+* generateContainerTests (true)
 
 You may customize Mantra-CLI by editing `mantra_cli.yaml` on the root directory
 of your project. Please open an issue with suggestions for more customization.
