@@ -1,3 +1,8 @@
+## 0.4.6 (February 24 2017)
+
+* Add options generateComponentTests and generateContainerTests that allows to specify whether 
+component unit tests should be created (defaults to true) ([@macrozone](https://github.com/macrozone))
+
 ## 0.4.5 (November 30 2016)
 
 * Add missing dependency ([#108](https://github.com/mantrajs/mantra-cli/pull/108)) [@StorytellerCZ](https://github.com/StorytellerCZ)
