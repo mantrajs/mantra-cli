@@ -118,6 +118,28 @@ describe("getOutputPath", function() {
     let result = utils.getOutputPath(customConfig, 'storybook', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/components/.stories/user_list.js');
   });
+  describe("with custom modules path", function() {
+    const customConfig = {modulesPath: "foo/bar/mantra/modules"};
+    it("returns a correct output path for action", function() {
+      let result = utils.getOutputPath(customConfig, 'action', 'users', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/actions/users.js');
+    });
+
+    it("returns a correct output path for container", function() {
+      let result = utils.getOutputPath(customConfig, 'container', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/containers/user_list.js');
+    });
+
+    it("returns a correct output path for component", function() {
+      let result = utils.getOutputPath(customConfig, 'component', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/components/user_list.jsx');
+    });
+
+    it("returns a correct output path for a storybook", function() {
+      let result = utils.getOutputPath(customConfig, 'storybook', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/components/.stories/user_list.js');
+    });
+  });
 });
 
 describe("getTemplateVaraibles", function() {
