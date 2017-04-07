@@ -70,7 +70,6 @@ describe("create command", function() {
     it("creates app with custom modules path if options is specified", function() {
       fs.writeFileSync('../tmp/custom_config.yaml', 'modulesPath: imports/modules');
       create('blog', { config: '../tmp/custom_config.yaml' });
-
       checkCommonFiles("imports/modules");
     });
 

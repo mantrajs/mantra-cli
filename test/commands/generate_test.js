@@ -604,7 +604,7 @@ app.init();
 import initContext from './configs/context';
 
 // modules
-import coreModule from '../imports/modules/foo/bar/core';
+import coreModule from './modules/core';
 import commentsModule from '../imports/modules/foo/bar/comments';
 
 // init context
