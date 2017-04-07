@@ -3,7 +3,7 @@ import fse from 'fs-extra';
 import _ from 'lodash';
 import yaml from 'js-yaml';
 
-import {readConfig, DEFAULT_CONFIG} from '../dist/utils';
+import {readConfig, DEFAULT_CONFIG} from '../dist/config_utils';
 import {setupTestApp, teardownTestApp, checkFileOrDirExists} from './test_helpers';
 
 describe("readConfig", function() {
