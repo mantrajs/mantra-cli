@@ -23,7 +23,7 @@ export function setupTestApp() {
 }
 
 export function teardownTestApp() {
-  process.chdir(path.resolve(testDirPath));
+  process.chdir(testDirPath);
   fse.removeSync(testAppPath);
 }
 

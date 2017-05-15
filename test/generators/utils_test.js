@@ -83,39 +83,62 @@ export default function () {
 });
 
 describe("getOutputPath", function() {
+  const customConfig = {};
   it("returns a correct output path for collection", function() {
-    let result = utils.getOutputPath('collection', 'users');
+    let result = utils.getOutputPath(customConfig, 'collection', 'users');
     expect(result).to.equal('./lib/collections/users.js');
   });
 
   it("returns a correct output path for method", function() {
-    let result = utils.getOutputPath('method', 'users');
+    let result = utils.getOutputPath(customConfig, 'method', 'users');
     expect(result).to.equal('./server/methods/users.js');
   });
 
   it("returns a correct output path for publication", function() {
-    let result = utils.getOutputPath('publication', 'users');
+    let result = utils.getOutputPath(customConfig, 'publication', 'users');
     expect(result).to.equal('./server/publications/users.js');
   });
 
   it("returns a correct output path for action", function() {
-    let result = utils.getOutputPath('action', 'users', 'core');
+    let result = utils.getOutputPath(customConfig, 'action', 'users', 'core');
     expect(result).to.equal('./client/modules/core/actions/users.js');
   });
 
   it("returns a correct output path for container", function() {
-    let result = utils.getOutputPath('container', 'user_list', 'core');
+    let result = utils.getOutputPath(customConfig, 'container', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/containers/user_list.js');
   });
 
   it("returns a correct output path for component", function() {
-    let result = utils.getOutputPath('component', 'user_list', 'core');
+    let result = utils.getOutputPath(customConfig, 'component', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/components/user_list.jsx');
   });
 
   it("returns a correct output path for a storybook", function() {
-    let result = utils.getOutputPath('storybook', 'user_list', 'core');
+    let result = utils.getOutputPath(customConfig, 'storybook', 'user_list', 'core');
     expect(result).to.equal('./client/modules/core/components/.stories/user_list.js');
+  });
+  describe("with custom modules path", function() {
+    const customConfig = {modulesPath: "foo/bar/mantra/modules"};
+    it("returns a correct output path for action", function() {
+      let result = utils.getOutputPath(customConfig, 'action', 'users', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/actions/users.js');
+    });
+
+    it("returns a correct output path for container", function() {
+      let result = utils.getOutputPath(customConfig, 'container', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/containers/user_list.js');
+    });
+
+    it("returns a correct output path for component", function() {
+      let result = utils.getOutputPath(customConfig, 'component', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/components/user_list.jsx');
+    });
+
+    it("returns a correct output path for a storybook", function() {
+      let result = utils.getOutputPath(customConfig, 'storybook', 'user_list', 'core');
+      expect(result).to.equal('./foo/bar/mantra/modules/core/components/.stories/user_list.js');
+    });
   });
 });
 

@@ -572,7 +572,8 @@ export default function () {
     });
 
     it("updates client/main.js", function() {
-      generate('module', 'comments');
+      generate('module', 'comments', {}, {});
+
       let content = fs.readFileSync('./client/main.js', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import {createApp} from 'mantra-core';
@@ -587,6 +588,31 @@ const context = initContext();
 
 // create app
 const app = createApp(context);
+// load modules
+app.loadModule(coreModule);
+app.loadModule(commentsModule);
+app.init();
+`);
+    });
+
+    it("updates client/main.js with custom module paths", function() {
+      generate('module', 'comments', {}, {modulesPath: "imports/modules/foo/bar"});
+
+      let content = fs.readFileSync('./client/main.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {createApp} from 'mantra-core';
+import initContext from './configs/context';
+
+// modules
+import coreModule from './modules/core';
+import commentsModule from '../imports/modules/foo/bar/comments';
+
+// init context
+const context = initContext();
+
+// create app
+const app = createApp(context);
+// load modules
 app.loadModule(coreModule);
 app.loadModule(commentsModule);
 app.init();
