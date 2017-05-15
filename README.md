@@ -64,6 +64,11 @@ Possible values are:
 
 * `action`
 * `component`
+* `container`
+* `collection`
+* `method`
+* `publication`
+* `module`
 
 By default, a stateless component is generated. By using `--use-class` option
 (alias `-c`), you can generate a ES2015 class extending `React.Component`.
