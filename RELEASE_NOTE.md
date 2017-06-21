@@ -1,3 +1,9 @@
+## 0.5.1 (May 2017)
+
+* Add option `modulesPath` to specify the folder where mantra-modules are created (defaults to client/modules). 
+You can set `modulesPath: imports/modules` to prevent meteor from eagerly load modules. This is needed if you 
+use codesplitting in meteor 1.5. ([@macrozone](https://github.com/macrozone))
+
 ## 0.4.6 (February 24 2017)
 
 * Add options generateComponentTests and generateContainerTests that allows to specify whether 
