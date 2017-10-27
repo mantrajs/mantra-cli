@@ -1,12 +1,20 @@
+## Next
+
+new options that help usage in non-meteor projects (e.g. react native). Here with the defaults:
+
+- `storiesFolder: .stories`: foldername for storybook files. Some projects don't like the dot in the foldername, so you can change that here.
+- `jsxExtension: jsx`: change to js in react-native apps.
+- `snakeCaseFileNames: true`, if false, component-files etc. are created with PascalCase or camelCase (e.g. actions)
+
 ## 0.5.1 (May 2017)
 
-* Add option `modulesPath` to specify the folder where mantra-modules are created (defaults to client/modules). 
-You can set `modulesPath: imports/modules` to prevent meteor from eagerly load modules. This is needed if you 
+* Add option `modulesPath` to specify the folder where mantra-modules are created (defaults to client/modules).
+You can set `modulesPath: imports/modules` to prevent meteor from eagerly load modules. This is needed if you
 use codesplitting in meteor 1.5. ([@macrozone](https://github.com/macrozone))
 
 ## 0.4.6 (February 24 2017)
 
-* Add options generateComponentTests and generateContainerTests that allows to specify whether 
+* Add options generateComponentTests and generateContainerTests that allows to specify whether
 component unit tests should be created (defaults to true) ([@macrozone](https://github.com/macrozone))
 
 ## 0.4.5 (November 30 2016)
