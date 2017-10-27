@@ -1,12 +1,13 @@
 {
   "name": "mantra-cli",
-  "version": "0.6.0beta.0",
+  "version": "0.6.0",
   "description": "Command line interface for building Meteor apps with Mantra",
   "bin": {
     "mantra": "./bin/mantra"
   },
   "scripts": {
-    "test": "npm run-script compile && NODE_ENV=test ./node_modules/.bin/_mocha test/**/**/*_test.js --compilers js:babel-core/register",
+    "test":
+      "npm run-script compile && NODE_ENV=test ./node_modules/.bin/_mocha test/**/**/*_test.js --compilers js:babel-core/register",
     "compile": "./node_modules/.bin/babel lib/ -d dist/",
     "prepublish": "npm run-script compile"
   },
@@ -14,11 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/sungwoncho/mantra-cli.git"
   },
-  "keywords": [
-    "meteor",
-    "mantra",
-    "cli"
-  ],
+  "keywords": ["meteor", "mantra", "cli"],
   "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
   "license": "MIT",
   "bugs": {
