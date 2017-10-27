@@ -1,4 +1,4 @@
-## Next
+## 0.6.0 (October 2017)
 
 new options that help usage in non-meteor projects (e.g. react native). Here with the defaults:
 
